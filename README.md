@@ -14,3 +14,5 @@ Twitch Full Screen Chat Overlay
   <li>Change chat colors</li>
   <li>Save the last size and position of the chat overlay used</li>
 </ul>
+
+This extension is a work in progress
