@@ -1,0 +1,32 @@
+{
+  "manifest_version": 2,
+
+  "name": "Twitch Fullscreen Chat Overlay",
+  "short_name": "Twitch FCO",
+  "description": "Triggers fullscreen view of twitch stream with a chat overlay",
+  "version": "0.1.1",
+
+   "icons": {
+    "48": "icon.png"
+  },
+
+  "background" : {
+    "scripts" : ["jquery-3.1.1.min.js", "jquery-ui.min.js", "background.js"],
+    "persistent": false
+  },
+
+  "permissions": ["activeTab"],
+
+   "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  
+   "content_scripts": [
+    {
+      "matches": ["https://www.twitch.tv/*"],
+       "css": ["styles.css"],
+       "js":  ["jquery-3.1.1.min.js", "jquery-ui.min.js"]
+    }
+  ]
+}
