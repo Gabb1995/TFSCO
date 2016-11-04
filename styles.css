@@ -1,3 +1,11 @@
+.fsbutton{
+	padding:5px 10px;
+	color: #fff;
+	background: #6441a4;
+	cursor: pointer;
+	display: inline-block;
+}
+
 body.TFCO_fullScreenMode #right_col, body.TFCO_fullScreenMode .app-main.theatre #right_col{
 	z-index: 9999999999;
 	background: transparent;

@@ -1,9 +1,9 @@
-function runContent(e) {
-	chrome.tabs.executeScript({
-		file: 'content.js'
-	}); 
-}
+// function runContent(e) {
+// 	chrome.tabs.executeScript({
+// 		file: 'content.js'
+// 	}); 
+// }
 
-var CTAbutton = document.getElementById('clickme')
-CTAbutton.addEventListener('click', runContent);
+// var CTAbutton = document.getElementById('clickme')
+// CTAbutton.addEventListener('click', runContent);
 
