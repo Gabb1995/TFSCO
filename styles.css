@@ -1,10 +1,49 @@
-.fsbutton{
-	padding:5px 10px;
+.fsContainer{
+	padding:2px 7px;
 	color: #fff;
-	background: #6441a4;
-	cursor: pointer;
 	display: inline-block;
+	-webkit-box-sizing:border-box;
+	box-sizing:border-box;
+	-webkit-transition: all 0.2s;
+	transition: all 0.2s;
+	margin-top:8px;
+	background: #febf04;
+	width:100%;
+	position:relative;
 }
+.fsContainer .loading{
+	display:none;
+}
+
+.fsContainer.disabled .loading{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	display:block;
+	background-color:red;
+}
+.fsContainer:hover{
+	opacity:0.8;
+}
+
+.fsToolBar .fullscreenBtn{
+	position: absolute;
+    right: 0;
+    height: 100%;
+    top: 0;
+    line-height: 25px;
+    text-align: center;
+    width: 50px;
+    border-left: 1px solid #fff;
+}
+
+.fsToolBar{height:25px; }
+.fsToolBar-title{line-height: 25px;height: 25px;}
+.fsToolBar-chatOpacity{display:inline-block;}
+.fsToolBar input{display:inline-block;}
+.fsToolBar label{display:inline-block; color:#000; }
 
 body.TFCO_fullScreenMode #right_col, body.TFCO_fullScreenMode .app-main.theatre #right_col{
 	z-index: 9999999999;

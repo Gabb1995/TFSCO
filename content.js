@@ -1,13 +1,14 @@
 $( document ).ready(function() {
 
   var body =document.querySelector('body');
-  var savedStyle;
   var chatBox;
-
+  
+  var minimize = false;
   var checkExist = setInterval(function() {
      if ($('#right_col').length) {
         chatBox = $('#right_col');
         clearInterval(checkExist);
+        fsContainer.classList.remove('disabled');
      }
   }, 100);
 
@@ -16,7 +17,9 @@ $( document ).ready(function() {
     var chatCloseButton = document.querySelector('#right_close');
 
     initializeDrag();
-    addChatMinimize();
+    if (!minimize){
+        addChatMinimize();
+    }
     //make sure click only happens once.
     var counter = 0;
     if(counter === 0){
@@ -40,6 +43,9 @@ $( document ).ready(function() {
   }
 
   function addChatMinimize(){
+
+    minimize = true;
+
     //create chat minimize button
     var chatMinimze = document.createElement('div');
     chatMinimze.classList.add('TFCO_chatMinimize');
@@ -55,6 +61,8 @@ $( document ).ready(function() {
 
   //when entering fullscreen and out
   function changeHandler(){
+    var savedStyle;
+
     clearTimeout(handlerTimeout);
     handlerTimeout = setTimeout(function(){
         if( window.innerHeight === screen.height) {
@@ -88,19 +96,37 @@ $( document ).ready(function() {
       document.addEventListener('MSFullscreenChange', changeHandler, false);
   }
 
+  function appendDom(){
+    var fsToolBar;
+    var fsButton;
+    fsToolBar = "<div class='fsToolBar'>"+
+                  "<div class='fsToolBar-title>Fullscreen with chat</div>"+
+                  "<div class='fsToolBar-chatOpacity'>"+
+                    "<label>Chat opacity</label>"+
+                    "<input type='number' />"+
+                  "</div>"+
+                  "<div class='fullscreenBtn'>Go!</div>"+
+                "</div>"+
+                "<div class='loading'>Waiting for chat to load...</div>";
+
+    fsContainer.innerHTML = fsToolBar;
+    fsButton = document.querySelector('.fullscreenBtn');
+    fsButton.addEventListener('click', clickFullscreen);
+
+  }
 
   var playerColumn;
+  var fsContainer = document.createElement('div');
 
-  var fsbutton = document.createElement('div');
-  fsbutton.classList.add('fsbutton');
+  fsContainer.classList.add('fsContainer', 'disabled');
 
-  fsbutton.addEventListener('click', clickFullscreen);
-  fsbutton.innerHTML = "Fullscreen";
+
   var checkExistTwo = setInterval(function() {
      if ($('.player-column').length) {
         clearInterval(checkExistTwo);
         playerColumn = $('.player-column');
-        playerColumn[0].appendChild(fsbutton);
+        playerColumn[0].appendChild(fsContainer);
+        appendDom();
      }
   }, 100);
 });
