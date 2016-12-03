@@ -1,6 +1,6 @@
 $( document ).ready(function() {
 
-  var body =document.querySelector('body');
+  var body = document.body;
   var chatBox;
   var savedStyle;
   var chatOpacity;
@@ -19,14 +19,16 @@ $( document ).ready(function() {
     var chatCloseButton = document.querySelector('#right_close');
 
     initializeDrag();
+    initializeResize();
+
     if (!minimize){
         addChatMinimize();
     }
     addChatSettings();
     //make sure click only happens once.
-    var counter = 0;
-    if(counter === 0){
-      counter ++;
+    // var counter = 0;
+    // if(counter === 0){
+    //   counter ++;
       //if chat is closed, toggle it open.
       if(chatBox[0].classList.contains('closed')){
         chatCloseButton.click();
@@ -34,7 +36,7 @@ $( document ).ready(function() {
       body.classList.add('TFCO_fullScreenMode');
       videoFSBtn.click();
       chrome.runtime.sendMessage({action: "toggleFullscreen"});
-    }
+    // }
     
   }
 
@@ -42,6 +44,13 @@ $( document ).ready(function() {
   function initializeDrag(){
     //initialize draggable plugin and disable it immediatly
     chatBox.draggable();
+    chatBox.draggable('disable');
+  }
+
+
+  function initializeResize(){
+    //initialize resizable plugin and disable it immediatly
+    chatBox.resizable();
     chatBox.draggable('disable');
   }
 
@@ -64,7 +73,7 @@ $( document ).ready(function() {
       var chatSettingsBoxContainer = document.createElement('div');
       var chatSettingsBox = "<div class='CS_box'>"+
                               "<label for='CS_opacity'></label>"+
-                              "<input id='CS_opacity' type='range' min='10' value='50' max='100'></input>"+
+                              "<input id='CS_opacity' type='range' min='10' max='100'></input>"+
                             "</div>";
        chatBox[0].appendChild(chatSettingsBoxContainer);
        chatSettingsBoxContainer.innerHTML = chatSettingsBox;
@@ -86,37 +95,45 @@ $( document ).ready(function() {
     });
   }
 
+
+  function onEnterFullscreen(){
+      console.log('go fullscreen');
+      chrome.runtime.sendMessage({action: "enterFullscreen"});
+      chatBox.draggable('enable');
+      chatBox.resizable('enable');
+      rangeOnChange();
+      if(savedStyle){
+          chatBox[0].setAttribute('style', savedStyle);
+          document.getElementById('#CS_opacity').value = chatOpacity;
+      }
+  }
+
+  function onExitFullscreen(){
+      chrome.runtime.sendMessage({action: "exitFullscreen"});
+      body.classList.remove('TFCO_minimized');
+      if (body.classList.contains('TFCO_fullScreenMode')){
+        savedStyle = chatBox[0].style.cssText;
+        chatOpacity = chatBox[0].style.opacity;
+      }
+      body.classList.remove('TFCO_fullScreenMode');
+      chatBox.removeAttr("style");
+      chatBox.draggable('disable');
+      console.log('exit fullscreen');
+  }
+
   var handlerTimeout;
 
   //when entering fullscreen and out
+  //timeout for mac
   function changeHandler(){
-   
-
     clearTimeout(handlerTimeout);
     handlerTimeout = setTimeout(function(){
         //ENTER FULLSCREEN
         if( window.innerHeight === screen.height) {
-          console.log('go fullscreen');
-          chrome.runtime.sendMessage({action: "enterFullscreen"});
-          chatBox.draggable('enable');
-          chatBox.resizable();
-          rangeOnChange();
-          if(savedStyle){
-              chatBox[0].setAttribute('style', savedStyle);
-              document.getElementById('#CS_opacity').value = chatOpacity;
-          }
+          onEnterFullscreen();
         //EXIT FULLSCREEN
         } else {
-          chrome.runtime.sendMessage({action: "exitFullscreen"});
-          body.classList.remove('TFCO_minimized');
-          if (body.classList.contains('TFCO_fullScreenMode')){
-            savedStyle = chatBox[0].style.cssText;
-            chatOpacity = chatBox[0].style.opacity;
-          }
-          body.classList.remove('TFCO_fullScreenMode');
-          chatBox.removeAttr("style");
-          chatBox.draggable('disable');
-          console.log('exit fullscreen');
+          onExitFullscreen();
         }
     },100);
   }
