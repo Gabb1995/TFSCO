@@ -1,80 +1,114 @@
 $( document ).ready(function() {
-
   var body = document.body;
   var chatBox;
   var savedStyle;
   var chatOpacity;
-
+  var videoFSBtn;
+  var chatCloseButton;
   var minimize = false;
-  var checkExist = setInterval(function() {
-     if ($('#right_col').length) {
-        chatBox = $('#right_col');
-        clearInterval(checkExist);
-        fsContainer.classList.remove('disabled');
-     }
-  }, 100);
+  var settings = false;
+  var playerColumn;
+
+  var fsContainer = document.createElement('div');
+  var chatSettings = document.createElement('div');
+  var chatSettingsBoxContainer = document.createElement('div');
+  var chatSettingsBox = "<div class='CS_box'>"+
+                          "<div class='CS_box_content'>"+
+                            "<label for='CS_opacity'>Chatbox opacity</label>"+
+                            "<input id='CS_opacity' type='range' min='25' max='100'></input>"+
+                            "<label for='CS_color_opacity'>Chatbox bg alpha</label>"+
+                            "<input id='CS_color_opacity' type='range' min='0' max='100'></input>"+
+                            "<label for='CS_hide_sticky'>Hide sticky cheer</label>"+
+                            "<input id='CS_hide_sticky' type='checkbox'></input>"+
+                           "</div>"+
+                        "</div>";
+  var chatMinimze = document.createElement('div');
+
+  declareEssentialsOnTime();
+
+  function  declareEssentialsOnTime(){
+    //wait for the chatbox container to load
+    var findChatBox = setInterval(function() {
+       if ($('#right_col').length) {
+          chatBox = $('#right_col');
+          clearInterval(findChatBox);
+       }
+    }, 100);
+
+    //wait for the tab-container to load
+    var findTabContainer = setInterval(function() {
+       if ($('.tab-container').length) {
+          tabContainer = $('.tab-container');
+          clearInterval(findTabContainer);
+       }
+    }, 100);
+
+    //wait for the player-column to load
+    var findPlayerColumn = setInterval(function() {
+       if ($('.player-column').length) {
+          clearInterval(findPlayerColumn);
+          playerColumn = $('.player-column');
+          playerColumn[0].appendChild(fsContainer);
+          appendDom();
+       }
+    }, 100);
+  }
+  
+
 
   function clickFullscreen(){
-    var videoFSBtn = document.querySelector('.player-button--fullscreen');
-    var chatCloseButton = document.querySelector('#right_close');
+    videoFSBtn = document.querySelector('.player-button--fullscreen');
+    chatCloseButton = document.querySelector('#right_close');
 
-    initializeDrag();
-    initializeResize();
+    chatBox.draggable({disabled:true});
+
+    chatBox.resizable({disabled:true});
 
     if (!minimize){
         addChatMinimize();
     }
-    addChatSettings();
-    //make sure click only happens once.
-    // var counter = 0;
-    // if(counter === 0){
-    //   counter ++;
-      //if chat is closed, toggle it open.
-      if(chatBox[0].classList.contains('closed')){
-        chatCloseButton.click();
-      }
-      body.classList.add('TFCO_fullScreenMode');
-      videoFSBtn.click();
-      chrome.runtime.sendMessage({action: "toggleFullscreen"});
-    // }
-    
+     if (!settings){
+      addChatSettings();
+    }
+
+    //if chat is closed, toggle it open.
+    if(chatBox[0].classList.contains('closed')){
+      chatCloseButton.click();
+    }
+    body.classList.add('TFCO_fullScreenMode');
+    videoFSBtn.click();    
   }
 
-
-  function initializeDrag(){
-    //initialize draggable plugin and disable it immediatly
-    chatBox.draggable();
-    chatBox.draggable('disable');
-  }
-
-
-  function initializeResize(){
-    //initialize resizable plugin and disable it immediatly
-    chatBox.resizable();
-    chatBox.draggable('disable');
-  }
-
-
-  function rangeOnChange(){
+  function rangeOnChangeOpacity(){
     $(document).on('input change', '#CS_opacity', function() {
-       chatBox[0].style.opacity = this.value / 100;
+       tabContainer[0].style.opacity = this.value / 100;
+    });
+  }
+
+  function rangeOnChangeColorOpacity(){
+    $(document).on('input change', '#CS_color_opacity', function() {
+       tabContainer[0].style.backgroundColor = "rgba(0,0,0,"+this.value / 100+")";
+    });
+  }
+
+  function hideStickyCheers(){
+    $("input#CS_hide_sticky").change(function() {
+      if ($('input#CS_hide_sticky').is(':checked')) {
+        body.classList.add('TFCO_hideSticky');
+      } else{
+        body.classList.remove('TFCO_hideSticky');
+      }
     });
   }
 
   function addChatSettings(){
-     var chatSettings = document.createElement('div');
+     settings = true;
+
      chatSettings.classList.add('TFCO_chatSettings', 'TFCO_chatButton');
      chatBox[0].appendChild(chatSettings);
      chatSettings.addEventListener('click', function(){
          body.classList.toggle('TFCO_settingsOpen');
       });
-
-
-      var chatSettingsBoxContainer = document.createElement('div');
-      var chatSettingsBox = "<div class='CS_box'>"+
-                              "<label for='CS_opacity'></label>"+
-                              "<input id='CS_opacity' type='range' min='10' max='100'></input>"+
-                            "</div>";
        chatBox[0].appendChild(chatSettingsBoxContainer);
        chatSettingsBoxContainer.innerHTML = chatSettingsBox;
   }
@@ -85,12 +119,11 @@ $( document ).ready(function() {
     minimize = true;
 
     //create chat minimize button
-    var chatMinimze = document.createElement('div');
+    
     chatMinimze.classList.add('TFCO_chatMinimize', 'TFCO_chatButton');
     chatBox[0].appendChild(chatMinimze);
 
     chatMinimze.addEventListener('click', function(){
-      chrome.runtime.sendMessage({action: "toggleMinimized"});
       body.classList.toggle('TFCO_minimized');
     });
   }
@@ -98,26 +131,34 @@ $( document ).ready(function() {
 
   function onEnterFullscreen(){
       console.log('go fullscreen');
-      chrome.runtime.sendMessage({action: "enterFullscreen"});
-      chatBox.draggable('enable');
-      chatBox.resizable('enable');
-      rangeOnChange();
+      chatBox.draggable({
+        disabled: false
+      });
+      chatBox.resizable({
+        disabled: false
+      });
+      rangeOnChangeOpacity();
+      rangeOnChangeColorOpacity();
+      hideStickyCheers();
       if(savedStyle){
           chatBox[0].setAttribute('style', savedStyle);
-          document.getElementById('#CS_opacity').value = chatOpacity;
       }
   }
 
   function onExitFullscreen(){
-      chrome.runtime.sendMessage({action: "exitFullscreen"});
       body.classList.remove('TFCO_minimized');
+      body.classList.remove('TFCO_settingsOpen');
       if (body.classList.contains('TFCO_fullScreenMode')){
         savedStyle = chatBox[0].style.cssText;
-        chatOpacity = chatBox[0].style.opacity;
       }
       body.classList.remove('TFCO_fullScreenMode');
       chatBox.removeAttr("style");
-      chatBox.draggable('disable');
+      chatBox.draggable({
+        disabled: true,
+      });
+      chatBox.resizable({
+        disabled: true
+      });
       console.log('exit fullscreen');
   }
 
@@ -148,27 +189,13 @@ $( document ).ready(function() {
   function appendDom(){
     var fsToolBar;
     var fsButton;
-    fsToolBar = "<div class='fullscreenBtn'>Go!</div>"+
-                "<div class='loading'>Waiting for chat to load...</div>";
-
+    fsToolBar = "<div class='fullscreenBtn'>Go!</div>";
     fsContainer.innerHTML = fsToolBar;
+    fsContainer.classList.add('fsContainer');
     fsButton = document.querySelector('.fullscreenBtn');
     fsButton.addEventListener('click', clickFullscreen);
 
   }
 
-  var playerColumn;
-  var fsContainer = document.createElement('div');
-
-  fsContainer.classList.add('fsContainer', 'disabled');
-
-
-  var checkExistTwo = setInterval(function() {
-     if ($('.player-column').length) {
-        clearInterval(checkExistTwo);
-        playerColumn = $('.player-column');
-        playerColumn[0].appendChild(fsContainer);
-        appendDom();
-     }
-  }, 100);
+  
 });
