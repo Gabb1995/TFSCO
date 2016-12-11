@@ -8,7 +8,7 @@ $( document ).ready(function() {
   var minimize = false;
   var settings = false;
   var playerColumn;
-
+  var tabContainer;
   var fsContainer = document.createElement('div');
   var chatSettings = document.createElement('div');
   var chatSettingsBoxContainer = document.createElement('div');
