@@ -144,7 +144,7 @@ $( document ).ready(function() {
   function onEnterFullscreen(){
       console.log('go fullscreen');
       chatBox.draggable({
-        disabled: false
+        disabled: false,
       });
       chatBox.resizable({
         disabled: false
@@ -202,7 +202,7 @@ $( document ).ready(function() {
   }
 
   function appendDom(){
-    fsToolBar = "<div class='fullscreenBtn'>Go!</div>";
+    fsToolBar = "<div class='fullscreenBtn'>Start chat in fullscreen!</div>";
     fsContainer.innerHTML = fsToolBar;
     fsContainer.classList.add('fsContainer');
     fsButton = document.querySelector('.fullscreenBtn');

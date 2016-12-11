@@ -15,11 +15,15 @@ $twitchColor: #7A4ACB;
 	.fullscreenBtn{
 	    height: 100%;
 	    text-align: center;
-	    width: 50px;
 	    border-left: 1px solid #fff;
 	    cursor:pointer;
 	    background:$accentColor;
     	line-height:25px;
+	    padding: 0 10px;	
+    	@include transition(background 0.2s);
+	     &:hover{
+	    	background: lighten($accentColor, 20%);
+	    }
 	}
 }
 
@@ -37,6 +41,8 @@ body.TFCO_fullScreenMode {
 	.tab-container{
 		background: rgba(0,0,0,0.5);
 		opacity:0.85;
+		cursor:move;
+
 	}
 
 	.chat-container, .chat-container.dark, .app-main.theatre .chat-container, .chat-container.force-dark, .ember-chat-container.dark, .app-main.theatre .ember-chat-container, .ember-chat-container.force-dark{
@@ -84,6 +90,7 @@ body.TFCO_fullScreenMode {
 		width:15px;
 		height:15px;
 		position:absolute;
+		cursor:nwse-resize;
 
 	}
 	.ui-resizable-handle.ui-icon-gripsmall-diagonal-se{
@@ -103,6 +110,9 @@ body.TFCO_fullScreenMode {
 	.ui-resizable-handle.ui-resizable-s{
 		display:none;
 	}
+	.message-line{
+		cursor:text;
+	}
 
 	.TFCO_chatButton{
 		width: 17px;
@@ -112,6 +122,10 @@ body.TFCO_fullScreenMode {
 	    background: $accentColor;
 	    z-index: 5;
 	    cursor: pointer;
+	    @include transition(background 0.2s);
+	    &:hover{
+	    	background: lighten($accentColor, 20%);
+	    }
 	    &.TFCO_chatMinimize{top: 0;}
 	    &.TFCO_chatSettings{
 	    	top: 20px;
