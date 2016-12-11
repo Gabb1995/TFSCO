@@ -77,6 +77,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   margin-top: 5px;
   position: relative;
   height: 25px;
+  margin-bottom: 5px;
 }
 /* line 15, ../sass/styles.scss */
 .fsContainer .fullscreenBtn {
@@ -92,12 +93,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   -webkit-transition: background 0.2s;
   transition: background 0.2s;
 }
-/* line 24, ../sass/styles.scss */
+/* line 25, ../sass/styles.scss */
 .fsContainer .fullscreenBtn:hover {
   background: #f4739d;
 }
 
-/* line 32, ../sass/styles.scss */
+/* line 33, ../sass/styles.scss */
 body.TFCO_fullScreenMode #right_col, body.TFCO_fullScreenMode .app-main.theatre #right_col {
   z-index: 9999999999;
   background: transparent;
@@ -107,63 +108,63 @@ body.TFCO_fullScreenMode #right_col, body.TFCO_fullScreenMode .app-main.theatre 
   min-width: 250px;
   min-height: 235px;
 }
-/* line 41, ../sass/styles.scss */
+/* line 42, ../sass/styles.scss */
 body.TFCO_fullScreenMode .tab-container {
   background: rgba(0, 0, 0, 0.5);
   opacity: 0.85;
   cursor: move;
 }
-/* line 48, ../sass/styles.scss */
+/* line 49, ../sass/styles.scss */
 body.TFCO_fullScreenMode .chat-container, body.TFCO_fullScreenMode .chat-container.dark, body.TFCO_fullScreenMode .app-main.theatre .chat-container, body.TFCO_fullScreenMode .chat-container.force-dark, body.TFCO_fullScreenMode .ember-chat-container.dark, body.TFCO_fullScreenMode .app-main.theatre .ember-chat-container, body.TFCO_fullScreenMode .ember-chat-container.force-dark {
   background: transparent;
   color: #dfdfdf;
   box-shadow: none;
 }
-/* line 54, ../sass/styles.scss */
+/* line 55, ../sass/styles.scss */
 body.TFCO_fullScreenMode textarea, body.TFCO_fullScreenMode .theatre .ember-chat .chat-interface .textarea-contain textarea {
   background: transparent;
   pointer-events: auto;
   color: #dfdfdf;
   border-color: rgba(255, 255, 255, 0.2);
 }
-/* line 61, ../sass/styles.scss */
+/* line 62, ../sass/styles.scss */
 body.TFCO_fullScreenMode .ember-chat .chat-messages .chat-line.admin .message, body.TFCO_fullScreenMode .ember-chat .chat-messages .chat-line.notification .message {
   color: #afafaf;
 }
-/* line 65, ../sass/styles.scss */
+/* line 66, ../sass/styles.scss */
 body.TFCO_fullScreenMode .ember-chat .chat-header {
   box-shadow: inset 0 -1px 0 0 rgba(255, 255, 255, 0.2);
 }
-/* line 70, ../sass/styles.scss */
+/* line 71, ../sass/styles.scss */
 body.TFCO_fullScreenMode .theatre .player-controls-bottom, body.TFCO_fullScreenMode .theatre .player[data-controls=true] .player-controls-bottom {
   padding-bottom: 0;
 }
-/* line 74, ../sass/styles.scss */
+/* line 75, ../sass/styles.scss */
 body.TFCO_fullScreenMode .special-message {
   background: rgba(0, 0, 0, 0.3);
   border: none;
 }
-/* line 78, ../sass/styles.scss */
+/* line 79, ../sass/styles.scss */
 body.TFCO_fullScreenMode .sticky-message--pinned-cheers, body.TFCO_fullScreenMode .pinned-cheer__hack-box {
   background: black;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
-/* line 83, ../sass/styles.scss */
+/* line 84, ../sass/styles.scss */
 body.TFCO_fullScreenMode .emoticon-selector-toggle svg path, body.TFCO_fullScreenMode .bits-toggle path {
   fill: #7A4ACB;
 }
-/* line 86, ../sass/styles.scss */
+/* line 87, ../sass/styles.scss */
 body.TFCO_fullScreenMode .room-title {
   color: #dfdfdf;
 }
-/* line 89, ../sass/styles.scss */
+/* line 90, ../sass/styles.scss */
 body.TFCO_fullScreenMode .ui-resizable-handle {
   width: 15px;
   height: 15px;
   position: absolute;
   cursor: nwse-resize;
 }
-/* line 96, ../sass/styles.scss */
+/* line 97, ../sass/styles.scss */
 body.TFCO_fullScreenMode .ui-resizable-handle.ui-icon-gripsmall-diagonal-se {
   bottom: 0;
   right: 0;
@@ -172,19 +173,19 @@ body.TFCO_fullScreenMode .ui-resizable-handle.ui-icon-gripsmall-diagonal-se {
   background-repeat: no-repeat;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAAElBMVEUAAAAAAAD///9ycnKmpqbDw8NP6HFHAAAABnRSTlMAZmaMqL1duDaXAAAANElEQVR4AWOgLWBkwSXOhEucaQDFmVlwiDMz4RJnGhhxKIVLnAlVnIUZQUEAK4TFjKCoCwAVoAEkUgxjHAAAAABJRU5ErkJggg==);
 }
-/* line 106, ../sass/styles.scss */
+/* line 107, ../sass/styles.scss */
 body.TFCO_fullScreenMode .ui-resizable-handle.ui-resizable-e {
   display: none;
 }
-/* line 110, ../sass/styles.scss */
+/* line 111, ../sass/styles.scss */
 body.TFCO_fullScreenMode .ui-resizable-handle.ui-resizable-s {
   display: none;
 }
-/* line 113, ../sass/styles.scss */
+/* line 114, ../sass/styles.scss */
 body.TFCO_fullScreenMode .message-line {
   cursor: text;
 }
-/* line 117, ../sass/styles.scss */
+/* line 118, ../sass/styles.scss */
 body.TFCO_fullScreenMode .TFCO_chatButton {
   width: 17px;
   height: 17px;
@@ -198,15 +199,15 @@ body.TFCO_fullScreenMode .TFCO_chatButton {
   -webkit-transition: background 0.2s;
   transition: background 0.2s;
 }
-/* line 126, ../sass/styles.scss */
+/* line 127, ../sass/styles.scss */
 body.TFCO_fullScreenMode .TFCO_chatButton:hover {
   background: #f4739d;
 }
-/* line 129, ../sass/styles.scss */
+/* line 130, ../sass/styles.scss */
 body.TFCO_fullScreenMode .TFCO_chatButton.TFCO_chatMinimize {
   top: 0;
 }
-/* line 130, ../sass/styles.scss */
+/* line 131, ../sass/styles.scss */
 body.TFCO_fullScreenMode .TFCO_chatButton.TFCO_chatSettings {
   top: 20px;
   background-position: center;
@@ -214,7 +215,7 @@ body.TFCO_fullScreenMode .TFCO_chatButton.TFCO_chatSettings {
   background-size: 70%;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAQAAAC1QeVaAAAAs0lEQVQY02P4z4AbInMs/4OAArqkzP9H/w3/p4Mlff77/r/6nx0heQUo+A8I/8Pp7QjJ6P/owAUiKfRf7H8mWGATUIDj/1EwO+g/P0hyDlTtr/88YFMUoPx3IMm5UM53iCP+S0P570GSEv+V/5eBuQvBklvB7Lz/2jAHeUFVfwPqhwBThGsvYLj2AEJSCajD538RWDjuf+L/T/9FkYOPEYitwZKaUB5a2Mr93/B/KdDfcBEAwFsWhnIu/UEAAAAASUVORK5CYII=);
 }
-/* line 140, ../sass/styles.scss */
+/* line 141, ../sass/styles.scss */
 body.TFCO_fullScreenMode .TFCO_chatMinimize:before {
   content: '';
   height: 2px;
@@ -225,7 +226,7 @@ body.TFCO_fullScreenMode .TFCO_chatMinimize:before {
   left: 4px;
   display: block;
 }
-/* line 150, ../sass/styles.scss */
+/* line 151, ../sass/styles.scss */
 body.TFCO_fullScreenMode .TFCO_chatMinimize:after {
   content: '';
   height: 8px;
@@ -236,43 +237,43 @@ body.TFCO_fullScreenMode .TFCO_chatMinimize:after {
   left: 7px;
   opacity: 0;
 }
-/* line 162, ../sass/styles.scss */
+/* line 163, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_minimized .TFCO_chatMinimize {
   position: fixed;
   right: 0;
   top: calc(50% - 8px);
 }
-/* line 166, ../sass/styles.scss */
+/* line 167, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_minimized .TFCO_chatMinimize:after {
   opacity: 1;
 }
-/* line 170, ../sass/styles.scss */
+/* line 171, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_minimized .TFCO_chatSettings {
   display: none;
 }
-/* line 173, ../sass/styles.scss */
+/* line 174, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_minimized .rightcol-content {
   height: 0;
   overflow: hidden;
   pointer-events: none;
 }
-/* line 178, ../sass/styles.scss */
+/* line 179, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_minimized .ui-resizable-handle {
   opacity: 0;
   pointer-events: none;
 }
-/* line 182, ../sass/styles.scss */
+/* line 183, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_minimized .CS_box {
   opacity: 0;
   pointer-events: none;
 }
-/* line 186, ../sass/styles.scss */
+/* line 187, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_minimized #right_col {
   height: 16px !important;
   min-height: 16px !important;
   background-color: transparent !important;
 }
-/* line 190, ../sass/styles.scss */
+/* line 191, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_minimized #right_col:before {
   position: fixed;
   content: '';
@@ -289,7 +290,7 @@ body.TFCO_fullScreenMode.TFCO_minimized #right_col:before {
   -webkit-transform: translate(65%, -50%);
   transform: translate(65%, -50%);
 }
-/* line 206, ../sass/styles.scss */
+/* line 207, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_settingsOpen .CS_box_content {
   -moz-transform: translateX(0%);
   -ms-transform: translateX(0%);
@@ -297,12 +298,12 @@ body.TFCO_fullScreenMode.TFCO_settingsOpen .CS_box_content {
   transform: translateX(0%);
   box-shadow: 10px 20px 30px rgba(0, 0, 0, 0.3);
 }
-/* line 212, ../sass/styles.scss */
+/* line 213, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_hideSticky .sticky-message--pinned-cheers, body.TFCO_fullScreenMode.TFCO_hideSticky .pinned-cheer__hack-box {
   display: none !important;
 }
 
-/* line 219, ../sass/styles.scss */
+/* line 220, ../sass/styles.scss */
 .CS_box {
   z-index: 5;
   position: absolute;
@@ -311,7 +312,7 @@ body.TFCO_fullScreenMode.TFCO_hideSticky .sticky-message--pinned-cheers, body.TF
   margin-left: 2px;
   padding: 0 40px 40px 0;
 }
-/* line 226, ../sass/styles.scss */
+/* line 227, ../sass/styles.scss */
 .CS_box .CS_box_content {
   width: 100%;
   padding: 20px;
@@ -326,7 +327,7 @@ body.TFCO_fullScreenMode.TFCO_hideSticky .sticky-message--pinned-cheers, body.TF
   -webkit-transform: translateX(-100%);
   transform: translateX(-100%);
 }
-/* line 239, ../sass/styles.scss */
+/* line 240, ../sass/styles.scss */
 .CS_box label {
   white-space: nowrap;
   padding-top: 5px;
@@ -334,7 +335,7 @@ body.TFCO_fullScreenMode.TFCO_hideSticky .sticky-message--pinned-cheers, body.TF
   border-top: 1px solid rgba(255, 255, 255, 0.5);
   color: #fff;
 }
-/* line 240, ../sass/styles.scss */
+/* line 241, ../sass/styles.scss */
 .CS_box label:first-of-type {
   border-top: none;
   margin-top: 0;
