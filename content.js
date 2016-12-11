@@ -2,6 +2,7 @@ $( document ).ready(function() {
   var body = document.body;
   var chatBox;
   var savedStyle;
+  var tabSavedStyle;
   var chatOpacity;
   var videoFSBtn;
   var chatCloseButton;
@@ -9,6 +10,8 @@ $( document ).ready(function() {
   var settings = false;
   var playerColumn;
   var tabContainer;
+  var fsToolBar;
+  var fsButton;
   var fsContainer = document.createElement('div');
   var chatSettings = document.createElement('div');
   var chatSettingsBoxContainer = document.createElement('div');
@@ -23,6 +26,15 @@ $( document ).ready(function() {
                            "</div>"+
                         "</div>";
   var chatMinimze = document.createElement('div');
+
+
+  // check if we are already initialized if not reinitialize
+  var checkReady = setInterval(function() {
+       if (document.querySelector('.fullscreenBtn') === null) {
+          declareEssentialsOnTime();
+       }
+    },2000);
+
 
   declareEssentialsOnTime();
 
@@ -142,6 +154,7 @@ $( document ).ready(function() {
       hideStickyCheers();
       if(savedStyle){
           chatBox[0].setAttribute('style', savedStyle);
+          tabContainer[0].setAttribute('style', tabSavedStyle);
       }
   }
 
@@ -150,9 +163,11 @@ $( document ).ready(function() {
       body.classList.remove('TFCO_settingsOpen');
       if (body.classList.contains('TFCO_fullScreenMode')){
         savedStyle = chatBox[0].style.cssText;
+        tabSavedStyle = tabContainer[0].style.cssText;
       }
       body.classList.remove('TFCO_fullScreenMode');
       chatBox.removeAttr("style");
+      tabContainer.removeAttr("style");
       chatBox.draggable({
         disabled: true,
       });
@@ -187,15 +202,10 @@ $( document ).ready(function() {
   }
 
   function appendDom(){
-    var fsToolBar;
-    var fsButton;
     fsToolBar = "<div class='fullscreenBtn'>Go!</div>";
     fsContainer.innerHTML = fsToolBar;
     fsContainer.classList.add('fsContainer');
     fsButton = document.querySelector('.fullscreenBtn');
     fsButton.addEventListener('click', clickFullscreen);
-
   }
-
-  
 });
