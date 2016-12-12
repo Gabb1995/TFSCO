@@ -31,6 +31,8 @@ $( document ).ready(function() {
   // check if we are already initialized if not reinitialize
   var checkReady = setInterval(function() {
        if (document.querySelector('.fullscreenBtn') === null) {
+           minimize = false;
+           settings = false;
           declareEssentialsOnTime();
        }
     },2000);
@@ -41,7 +43,7 @@ $( document ).ready(function() {
   function  declareEssentialsOnTime(){
     //wait for the chatbox container to load
     var findChatBox = setInterval(function() {
-       if ($('#right_col').length) {
+       if ($('#right_col .chat-room').length) {
           chatBox = $('#right_col');
           clearInterval(findChatBox);
        }
