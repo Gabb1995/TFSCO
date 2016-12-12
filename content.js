@@ -73,9 +73,7 @@ $( document ).ready(function() {
   function clickFullscreen(){
     videoFSBtn = document.querySelector('.player-button--fullscreen');
     chatCloseButton = document.querySelector('#right_close');
-
     chatBox.draggable({disabled:true});
-
     chatBox.resizable({disabled:true});
 
     if (!minimize){
@@ -127,7 +125,7 @@ $( document ).ready(function() {
        chatSettingsBoxContainer.innerHTML = chatSettingsBox;
   }
 
-
+    var listenerCounter = 0;
   function addChatMinimize(){
 
     minimize = true;
@@ -138,15 +136,16 @@ $( document ).ready(function() {
     chatBox[0].appendChild(chatMinimze);
 
     chatMinimze.addEventListener('click', function(){
+        listenerCounter++;
+        console.log('COUNTERRRRRR', listenerCounter);
       body.classList.toggle('TFCO_minimized');
     });
   }
 
-
   function onEnterFullscreen(){
       console.log('go fullscreen');
       chatBox.draggable({
-        disabled: false,
+        disabled: false
       });
       chatBox.resizable({
         disabled: false
@@ -171,7 +170,7 @@ $( document ).ready(function() {
       chatBox.removeAttr("style");
       tabContainer.removeAttr("style");
       chatBox.draggable({
-        disabled: true,
+        disabled: true
       });
       chatBox.resizable({
         disabled: true
@@ -193,7 +192,7 @@ $( document ).ready(function() {
         } else {
           onExitFullscreen();
         }
-    },100);
+    },300);
   }
 
   if (document.addEventListener){
