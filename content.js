@@ -33,7 +33,9 @@ $( document ).ready(function() {
        if (document.querySelector('.fullscreenBtn') === null) {
            minimize = false;
            settings = false;
-          declareEssentialsOnTime();
+           chatSettings.removeEventListener('click', toggleSettingsClass);
+           chatSettings.removeEventListener('click', toggleMinimizeClass);
+           declareEssentialsOnTime();
        }
     },2000);
 
@@ -113,33 +115,35 @@ $( document ).ready(function() {
     });
   }
 
+
+  function toggleSettingsClass(){
+      body.classList.toggle('TFCO_settingsOpen');
+  }
+
   function addChatSettings(){
      settings = true;
 
      chatSettings.classList.add('TFCO_chatSettings', 'TFCO_chatButton');
      chatBox[0].appendChild(chatSettings);
-     chatSettings.addEventListener('click', function(){
-         body.classList.toggle('TFCO_settingsOpen');
-      });
+
+     chatSettings.addEventListener('click', toggleSettingsClass);
+
        chatBox[0].appendChild(chatSettingsBoxContainer);
        chatSettingsBoxContainer.innerHTML = chatSettingsBox;
   }
 
-    var listenerCounter = 0;
+    function toggleMinimizeClass(){
+        body.classList.toggle('TFCO_minimized');
+    }
   function addChatMinimize(){
 
     minimize = true;
-
     //create chat minimize button
     
     chatMinimze.classList.add('TFCO_chatMinimize', 'TFCO_chatButton');
     chatBox[0].appendChild(chatMinimze);
 
-    chatMinimze.addEventListener('click', function(){
-        listenerCounter++;
-        console.log('COUNTERRRRRR', listenerCounter);
-      body.classList.toggle('TFCO_minimized');
-    });
+    chatMinimze.addEventListener('click', toggleMinimizeClass);
   }
 
   function onEnterFullscreen(){
