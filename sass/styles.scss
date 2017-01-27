@@ -1,8 +1,8 @@
 @import 'compass/reset';
 @import 'compass';
 
-$accentColor: #ed145b;
-$twitchColor: #7A4ACB;
+$accentColor: #ffb300;
+$twitchColor: #623ca5;
 .fsContainer{
 	color: #fff;
 	display: inline-block;
@@ -15,15 +15,29 @@ $twitchColor: #7A4ACB;
 	.fullscreenBtn{
 	    height: 100%;
 	    text-align: center;
-	    border-left: 1px solid #fff;
+	    box-shadow: 0 0 0px 1px #fff inset;
 	    cursor:pointer;
-	    background:$accentColor;
+	    background:$twitchColor;
     	line-height:25px;
 	    padding: 0 10px;
-	   
-    	@include transition(background 0.2s);
+	   	position: relative;
+    	@include transition(background 0.3s);
 	     &:hover{
-	    	background: lighten($accentColor, 20%);
+	    	background: lighten($twitchColor, 20%);
+	    }
+
+
+	    &:before{
+	    	content:'';
+			background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAVFBMVEX////h2u/d1OzMwOLKvuHHut/Bs9yyoNOsmdCmkc2WfcOTesKOc7+IbLt6W7N2VrFzUq9vTK1rR6poRKlmQadiPKVjPaViPKVkPqaxntL/swD///9MpiyaAAAAF3RSTlMABgwgIiYsQEZOYmZsdIWJjZOZm5+jo4C98GYAAACeSURBVHja7dK5DsJQEENRs+87w0D4//9EID2MEqyYhgLi+p6pBvflB/sauHr7cVA91gEFqsY68HevcTEBewG4Zn8msPqYEFj9AgROvwaB0eceBE5/GhA4fUzxBByb+mIJDdhzGwgg+kNPANHHCAKIfgYBRL+CBuy5LSR42x/7NRBlmaWP140hFlny3RDtI4g5vAXPm4DnTcDzNmg9fwP2D7KydeNIjwAAAABJRU5ErkJggg==);
+	    	height:27px;
+	    	width:28px;
+	    	background-size:contain;
+	    	background-position: center;
+	    	background-repeat:no-repeat;
+	    	position:absolute;
+	    	right:-20px;
+	    	top:1px;
 	    }
 	}
 }
@@ -31,7 +45,7 @@ $twitchColor: #7A4ACB;
 body.TFCO_fullScreenMode {
 
 	#right_col, .app-main.theatre #right_col{
-		z-index: 9999999999;
+		z-index: 9999999999 !important;
 		background: transparent;
 		bottom:initial;
 		right:initial;
@@ -65,6 +79,7 @@ body.TFCO_fullScreenMode {
 
 	.ember-chat .chat-header{
 		    box-shadow: inset 0 -1px 0 0 rgba(255,255,255,0.2);
+		    background:transparent;
 
 	}
 
@@ -120,16 +135,17 @@ body.TFCO_fullScreenMode {
 	    height: 17px;
 	    position: absolute;
 	   	right: 0;
-	    background: $accentColor;
+	    background: $twitchColor;
 	    z-index: 5;
 	    cursor: pointer;
 	    @include transition(background 0.2s);
 	    &:hover{
-	    	background: lighten($accentColor, 20%);
+	    	background: lighten($twitchColor, 20%);
 	    }
 	    &.TFCO_chatMinimize{top: 0;}
 	    &.TFCO_chatSettings{
-	    	top: 20px;
+	    	top: 0px;
+	    	right:20px;
 	    	background-position:center;
 	    	background-repeat:no-repeat;
 	    	background-size: 70%;
@@ -206,13 +222,54 @@ body.TFCO_fullScreenMode {
 	&.TFCO_settingsOpen{
 		.CS_box_content{
 			@include transform(translateX(0%));
-			box-shadow: 10px 20px 30px rgba(0,0,0,0.3);
 		}	
 	}
 	&.TFCO_hideSticky{
 		.sticky-message--pinned-cheers, .pinned-cheer__hack-box{
 			display:none !important;
 		}
+	}
+	&.TFCO_slimMode{
+		.ember-chat .chat-messages{
+			    bottom: 30px;
+		}
+		.ember-chat .chat-interface{
+			height:30px !important;
+		}
+		button.qa-chat-buttons__submit{
+			display:none;
+		}
+		.ember-chat .chat-interface .chat-buttons-container{
+			padding-top:0;
+		}
+		.ember-chat .chat-header{
+			padding:0;
+			height:30px;
+		}
+		.ember-chat .chat-header .chat-header__button{
+			top:0;
+		}
+		.ember-chat .chat-interface .textarea-contain{
+			display:none;
+		}
+		.ember-chat .chat-room, .ember-chat .chat-rooms{
+			top:30px;
+		}
+	}
+
+	// BetterTTV OVERRIDES
+	#chat_lines_list, #chat_lines, .ember-chat, .ember-view.ember-chat.roomMode, .chat-container, .ember-chat-container, #channel-prompt, .ember-chat .chat-messages, #chat_text_input, #chat_text_login, .ember-chat .chat-interface textarea{
+		background: transparent !important;
+	}
+	#right_col, #right_col .content .top #right_nav, #right_col .content .top, #right_col .content .bottom #controls, .rightcol-content, #right_col .top #right_nav, #right_col .top, #right_col .bottom #controls, .ember-chat .chat-interface{
+		background: transparent !important;
+	}
+	.rightcol-content{
+		background: transparent !important;
+		z-index:initial;
+	}
+	.chat-lines .notice{
+		background: rgba(35,35,35,0.6) !important;
 	}
 }
 
@@ -227,8 +284,9 @@ body.TFCO_fullScreenMode {
 	.CS_box_content{
 		width:100%;
 		padding:20px;
-		background:$accentColor;
-		border:1px solid black;
+		background:rgba($twitchColor,0.9);
+		border:3px solid $accentColor;
+	    box-shadow: 0 0 0px 2px #fff inset;
 		@include transition(all 0.2s);
 		@include transform(translateX(-100%));
 	    

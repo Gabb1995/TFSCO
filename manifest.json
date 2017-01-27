@@ -1,10 +1,10 @@
 {
   "manifest_version": 2,
 
-  "name": "Twitch Fullscreen Chat Overlay",
+  "name": "Twitch Fullscreen Plus",
   "short_name": "TFCO",
   "description": "Triggers fullscreen view of twitch stream with a chat overlay",
-  "version": "0.2.0",
+  "version": "1.0.0",
 
    "icons": {
     "48": "icon.png"

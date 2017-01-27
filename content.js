@@ -23,6 +23,8 @@ $( document ).ready(function() {
                             "<input id='CS_color_opacity' type='range' min='0' max='100'></input>"+
                             "<label for='CS_hide_sticky'>Hide sticky cheer</label>"+
                             "<input id='CS_hide_sticky' type='checkbox'></input>"+
+                            "<label for='CS_slim_mode'>Slim mode</label>"+
+                            "<input id='CS_slim_mode' type='checkbox'></input>"+
                            "</div>"+
                         "</div>";
   var chatMinimze = document.createElement('div');
@@ -115,6 +117,16 @@ $( document ).ready(function() {
     });
   }
 
+  function slimMode(){
+    $("input#CS_slim_mode").change(function() {
+      if ($('input#CS_slim_mode').is(':checked')) {
+        body.classList.add('TFCO_slimMode');
+      } else{
+        body.classList.remove('TFCO_slimMode');
+      }
+    });
+  }
+
 
   function toggleSettingsClass(){
       body.classList.toggle('TFCO_settingsOpen');
@@ -157,6 +169,7 @@ $( document ).ready(function() {
       rangeOnChangeOpacity();
       rangeOnChangeColorOpacity();
       hideStickyCheers();
+      slimMode();
       if(savedStyle){
           chatBox[0].setAttribute('style', savedStyle);
           tabContainer[0].setAttribute('style', tabSavedStyle);
