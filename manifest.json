@@ -3,8 +3,8 @@
 
   "name": "Twitch Fullscreen Plus",
   "short_name": "TFCO",
-  "description": "Triggers fullscreen view of twitch stream with a chat overlay",
-  "version": "1.1.0",
+  "description": "Triggers fullscreen view of twitch stream with chat overlay",
+  "version": "1.2.0",
 
    "icons": {
     "48": "icon.png"
@@ -26,7 +26,7 @@
     {
       "matches": ["https://www.twitch.tv/*"],
        "css": ["stylesheets/styles.css"],
-       "js":  ["jquery-3.1.1.min.js", "jquery-ui.min.js", "content.js"],
+       "js":  ["vendor/jquery-3.1.1.min.js", "vendor/jquery-ui.min.js", "content.js"],
        "run_at": "document_end"
     }
   ],

@@ -15,7 +15,6 @@ $twitchColor: #623ca5;
 	.fullscreenBtn{
 	    height: 100%;
 	    text-align: center;
-	    box-shadow: 0 0 0px 1px #fff inset;
 	    cursor:pointer;
 	    background:$twitchColor;
     	line-height:25px;
@@ -37,10 +36,21 @@ $twitchColor: #623ca5;
 	    	background-repeat:no-repeat;
 	    	position:absolute;
 	    	right:-20px;
-	    	top:1px;
+	    	top:0px;
 	    }
 	}
 }
+
+.player-button.TFCO-PlayerBtn{
+	background-size: 23px;
+    background-position: 5px 5px; 
+	background-repeat:no-repeat;
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAdVBMVEX////h2u/d1OzTyObMwOLKvuHMwOLHut/Bs9zGuN6yoNOsmdCmkc2WfcOTesKchceOc7+WfcOIbLt6W7N2VrFzUq9vTK1rR6poRKlmQadiPKVjPaVuS6xrR6pnQqhiPKViPKVkPqZlQKeQdcCxntL/swD///88wTzgAAAAIHRSTlMABgwbICIkJiwtQEZOYmZmbG90hYmNk5mbn6Ojp6ywt3+AY/wAAAC/SURBVHja7dLHDsJADEVR03vvpsSU8P+fSBSJSQRzRbwF3mY291hZRLIdzLGsbyROMDEnOGbPvdpy0E6cYGZOcHKCXuIEV4uCNF8MXLzAvhGkb/sDsR/7NW5VQegBhEX6MwDqtQ+A+rEAgH4hAVTpbSMAoN83AUCvAwmgWNG8TqcSA9jbUgBAv60BgF47AgD6oQCAfi4Eor2tBEG039VLQMsze/ZaXldgGr553YoGBHQk1aZwngGcZ4DnGXw8/wD8Aw1WPQF+fAAAAABJRU5ErkJggg==);
+	&:hover{
+		opacity:0.9;
+	}
+}
+
 
 body.TFCO_fullScreenMode {
 
@@ -56,14 +66,13 @@ body.TFCO_fullScreenMode {
 	.tab-container{
 		background: rgba(0,0,0,0.5);
 		opacity:0.85;
-		cursor:move;
-
 	}
 
 	.chat-container, .chat-container.dark, .app-main.theatre .chat-container, .chat-container.force-dark, .ember-chat-container.dark, .app-main.theatre .ember-chat-container, .ember-chat-container.force-dark{
 		background: transparent;
 		color: #dfdfdf;
 		box-shadow: none;
+		border:none;
 	}
 
 	textarea, .theatre .ember-chat .chat-interface .textarea-contain textarea{
@@ -78,8 +87,12 @@ body.TFCO_fullScreenMode {
 	}
 
 	.ember-chat .chat-header{
-		    box-shadow: inset 0 -1px 0 0 rgba(255,255,255,0.2);
-		    background:transparent;
+	    box-shadow: inset 0 -1px 0 0 rgba(255,255,255,0.2);
+	    background: transparent;
+		cursor:move;
+		&:hover{
+			background:rgba(200,200,200,0.1);
+		}
 
 	}
 
@@ -135,17 +148,19 @@ body.TFCO_fullScreenMode {
 	    height: 17px;
 	    position: absolute;
 	   	right: 0;
-	    background: $twitchColor;
+	    background: $accentColor;
 	    z-index: 5;
 	    cursor: pointer;
-	    @include transition(background 0.2s);
+	    top:16px;
+	    @include transition(background 0.2s, top 0.2s);
 	    &:hover{
-	    	background: lighten($twitchColor, 20%);
+	    	background: lighten($accentColor, 20%);
 	    }
-	    &.TFCO_chatMinimize{top: 0;}
+	    &.TFCO_chatMinimize{    
+		    right: 10px;
+		}
 	    &.TFCO_chatSettings{
-	    	top: 0px;
-	    	right:20px;
+		    right: 31px;
 	    	background-position:center;
 	    	background-repeat:no-repeat;
 	    	background-size: 70%;
@@ -220,6 +235,9 @@ body.TFCO_fullScreenMode {
 		}
 	}
 	&.TFCO_settingsOpen{
+		.CS_box{
+			pointer-events:auto;
+		}
 		.CS_box_content{
 			@include transform(translateX(0%));
 		}	
@@ -227,6 +245,9 @@ body.TFCO_fullScreenMode {
 	&.TFCO_hideSticky{
 		.sticky-message--pinned-cheers, .pinned-cheer__hack-box{
 			display:none !important;
+		}
+		.ember-chat .chat-messages{
+			top:0 !important;
 		}
 	}
 	&.TFCO_slimMode{
@@ -255,6 +276,12 @@ body.TFCO_fullScreenMode {
 		.ember-chat .chat-room, .ember-chat .chat-rooms{
 			top:30px;
 		}
+		.TFCO_chatButton{
+			top:6px;
+		}
+		.CS_box{
+			top:30px;
+		}
 	}
 
 	// BetterTTV OVERRIDES
@@ -271,40 +298,138 @@ body.TFCO_fullScreenMode {
 	.chat-lines .notice{
 		background: rgba(35,35,35,0.6) !important;
 	}
+	#bttvSettingsPanel, .emote-menu{
+		z-index: 9999999999 !important;
+	}
+	#bttv-channel-state-contain{
+		top:-20px;
+	}
+	.ember-chat .chat-messages .chat-line{
+    	background-color: transparent;
+	}
+	// #chat_line_list .line:nth-child(2n), .chat-messages .chat-line:nth-child(2n){
+ //    	background-color: rgb(35,35,35);
+	// }
+	// #chat_line_list .line, .chat-messages .chat-line{
+	// 	border-bottom:1px solid rgb(0,0,0) !important;
+	// }
 }
 
 
 .CS_box{
 	z-index:5;
 	position:absolute;
-	left:100%;	
 	overflow:hidden;
-	margin-left:2px;	
 	padding: 0 40px 40px 0;
+	left: 0;
+    right: 0;
+    top: 50px;
+    margin: 0;
+    padding-right: 0;
+    pointer-events:none;
+    @include transition(top 0.2s);
 	.CS_box_content{
 		width:100%;
 		padding:20px;
 		background:rgba($twitchColor,0.9);
-		border:3px solid $accentColor;
-	    box-shadow: 0 0 0px 2px #fff inset;
 		@include transition(all 0.2s);
-		@include transform(translateX(-100%));
-	    
+		@include transform(translateY(-100%));
+	    .input_pair{
+	    	@include display-flex;
+	    	@include justify-content(space-between);
+	    	padding-top:8px;
+			margin-top:8px;
+			border-top:1px solid rgba(0,0,0,0.2);
+			&:first-of-type{
+				border-top:none;
+				margin-top:0;
+				padding-top:0;
+			}
+	    }
 	}
-	input{
-		
-		
-	}
-	label{
-		&:first-of-type{
-			border-top:none;
-			margin-top:0;
-			padding-top:0;
-		}
+	.input_label{
 		white-space: nowrap;
-		padding-top:5px;
-		margin-top:10px;
-		border-top:1px solid rgba(255,255,255,0.5);
 		color:#fff;
+		margin-bottom:0;
+	}
+
+	.checkbox_hide_sticky, .checkbox_slim_mode {
+	  width: 80px;
+	  height: 26px;
+	  background: #333;
+	  position: relative;
+	  border-radius: 50px;
+	  box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,0.2);
+	  &:after {
+	    content: 'OFF';
+	    color: #000;
+	    position: absolute;
+	    right: 10px;
+	    z-index: 0;
+	    font: 12px/26px Arial, sans-serif;
+	    font-weight: bold;
+	    text-shadow: 1px 1px 0px rgba(255,255,255,.15);
+	  }
+	  &:before {
+	    content: 'ON';
+	    color: $accentColor;
+	    position: absolute;
+	    left: 10px;
+	    z-index: 0;
+	    font: 12px/26px Arial, sans-serif;
+	    font-weight: bold;
+	  }
+	  label {
+	    display: block;
+	    width: 34px;
+	    height: 20px;
+	    cursor: pointer;
+	    position: absolute;
+	    top: 3px;
+	    left: 3px;
+	    z-index: 1;
+	    background: #fcfff4;
+	    background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+	    border-radius: 50px;
+	    transition: all 0.4s ease;
+	    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.3);
+	  }
+	  input[type=checkbox] {
+	    visibility: hidden;
+	    &:checked + label {
+	      left: 43px;
+	    }
+	  }    
+	}
+
+	//input range design
+	input[type=range] {
+	  -webkit-appearance: none;
+	  width: 40%;
+	  margin: 1.2px 0;
+	  background:transparent;
+	}
+	input[type=range]:focus {
+	  outline: none;
+	}
+	input[type=range]::-webkit-slider-runnable-track {
+	  width: 100%;
+	  height: 1px;
+
+	  cursor: pointer;
+	  background: rgba(243, 240, 242, 0.35);
+	  border-radius: 20px;
+	}
+	input[type=range]::-webkit-slider-thumb {
+	  height: 10px;
+	  width: 10px;
+	  border-radius: 50px;
+	  background: $accentColor;
+	  cursor: pointer;
+	  -webkit-appearance: none;
+	  margin-top: -3.2px;
+	}
+	input[type=range]:focus::-webkit-slider-runnable-track {
+	  background: rgba(254, 254, 254, 0.55);
 	}
 }

@@ -1,30 +1,37 @@
 $( document ).ready(function() {
+
+  var chatBox, chatHeader, savedStyle, tabSavedStyle, chatOpacity, videoFSBtn, chatCloseButton, playerColumn, playerButtonsRight, tabContainer, fsToolBar, fsButton, windowWidth;
   var body = document.body;
-  var chatBox;
-  var savedStyle;
-  var tabSavedStyle;
-  var chatOpacity;
-  var videoFSBtn;
-  var chatCloseButton;
   var minimize = false;
   var settings = false;
-  var playerColumn;
-  var tabContainer;
-  var fsToolBar;
-  var fsButton;
+  var fsPlayerBtn = document.createElement('button');
   var fsContainer = document.createElement('div');
   var chatSettings = document.createElement('div');
   var chatSettingsBoxContainer = document.createElement('div');
   var chatSettingsBox = "<div class='CS_box'>"+
                           "<div class='CS_box_content'>"+
-                            "<label for='CS_opacity'>Chatbox opacity</label>"+
-                            "<input id='CS_opacity' type='range' min='25' max='100'></input>"+
-                            "<label for='CS_color_opacity'>Chatbox bg alpha</label>"+
-                            "<input id='CS_color_opacity' type='range' min='0' max='100'></input>"+
-                            "<label for='CS_hide_sticky'>Hide sticky cheer</label>"+
-                            "<input id='CS_hide_sticky' type='checkbox'></input>"+
-                            "<label for='CS_slim_mode'>Slim mode</label>"+
-                            "<input id='CS_slim_mode' type='checkbox'></input>"+
+                            "<div class='input_pair'>" +
+                              "<div class='input_label'>Chatbox opacity</div>"+
+                              "<input id='CS_opacity' type='range' min='25' max='100'></input>"+
+                            "</div>"+
+                            "<div class='input_pair'>" +
+                              "<div class='input_label'>Chatbox bg alpha</div>"+
+                              "<input id='CS_color_opacity' type='range' min='0' max='100'></input>"+
+                            "</div>"+
+                            "<div class='input_pair'>" +
+                              "<div class='input_label'>Hide sticky cheer</div>" +
+                              "<div class='checkbox_hide_sticky'>" +
+                                "<input id='CS_hide_sticky' type='checkbox'></input>"+
+                                "<label for='CS_hide_sticky'></label>"+
+                              "</div>"+
+                            "</div>"+
+                            "<div class='input_pair'>" +
+                              "<div class='input_label'>Slim mode</div>" +
+                              "<div class='checkbox_slim_mode'>" +
+                                "<input id='CS_slim_mode' type='checkbox'></input>"+
+                                "<label for='CS_slim_mode'></label>"+
+                              "</div>"+
+                            "</div>"+
                            "</div>"+
                         "</div>";
   var chatMinimze = document.createElement('div');
@@ -49,6 +56,7 @@ $( document ).ready(function() {
     var findChatBox = setInterval(function() {
        if ($('#right_col .chat-room').length) {
           chatBox = $('#right_col');
+          chatHeader = $('.chat-header');
           clearInterval(findChatBox);
        }
     }, 100);
@@ -70,6 +78,16 @@ $( document ).ready(function() {
           appendDom();
        }
     }, 100);
+
+    //wait for the player-buttons to load
+    var findPlayerButtons = setInterval(function() {
+       if ($('.player-buttons-right').length) {
+          clearInterval(findPlayerButtons);
+          playerButtonsRight = $('.player-buttons-right');
+          playerButtonsRight[0].appendChild(fsPlayerBtn);
+          appendPlayerBtn();
+       }
+    }, 100);
   }
   
 
@@ -77,7 +95,10 @@ $( document ).ready(function() {
   function clickFullscreen(){
     videoFSBtn = document.querySelector('.player-button--fullscreen');
     chatCloseButton = document.querySelector('#right_close');
-    chatBox.draggable({disabled:true});
+    chatBox.draggable({
+      disabled:true,
+      handle: chatHeader[0]
+    });
     chatBox.resizable({disabled:true});
 
     if (!minimize){
@@ -160,6 +181,11 @@ $( document ).ready(function() {
 
   function onEnterFullscreen(){
       console.log('go fullscreen');
+      if (windowWidth != $(window).width()){
+        savedStyle = null;
+        windowWidth = $(window).width();
+      }
+      windowWidth = $(window).width();
       chatBox.draggable({
         disabled: false
       });
@@ -225,5 +251,10 @@ $( document ).ready(function() {
     fsContainer.classList.add('fsContainer');
     fsButton = document.querySelector('.fullscreenBtn');
     fsButton.addEventListener('click', clickFullscreen);
+  }
+
+  function appendPlayerBtn(){
+      fsPlayerBtn.classList.add('TFCO-PlayerBtn', 'player-button');
+      fsPlayerBtn.addEventListener('click', clickFullscreen);
   }
 });
