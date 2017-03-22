@@ -118,7 +118,8 @@ $( document ).ready(function() {
 
   function rangeOnChangeOpacity(){
     $(document).on('input change', '#CS_opacity', function() {
-       tabContainer[0].style.opacity = this.value / 100;
+        console.log(this.value / 100);
+        tabContainer[0].style.opacity = this.value / 100;
     });
   }
 
