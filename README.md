@@ -10,7 +10,7 @@ Twitch Full Screen Chat Overlay
 
 <b>Planned Features:</b>
 <ul>
-  <li>Change chat opacity</li>
+  <li>Add position presets</li>
   <li>Change chat colors</li>
   <li>Save the last size and position of the chat overlay used</li>
 </ul>
