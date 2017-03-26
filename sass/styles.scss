@@ -87,10 +87,12 @@ body.TFCO_fullScreenMode {
 		color:#afafaf;
 	}
 
+
 	.ember-chat .chat-header{
 	    box-shadow: inset 0 -1px 0 0 rgba(255,255,255,0.2);
-	    background: transparent;
+	    background: transparent !important;
 		cursor:move;
+
 		&:hover{
 			background:rgba(200,200,200,0.1);
 		}
@@ -291,7 +293,7 @@ body.TFCO_fullScreenMode {
 		}
 	}
 
-	// BetterTTV OVERRIDES
+	// BetterTTV FFZ OVERRIDES
 	#chat_lines_list, #chat_lines, .ember-chat, .ember-view.ember-chat.roomMode, .chat-container, .ember-chat-container, #channel-prompt, .ember-chat .chat-messages, #chat_text_input, #chat_text_login, .ember-chat .chat-interface textarea{
 		background: transparent !important;
 	}
@@ -313,6 +315,45 @@ body.TFCO_fullScreenMode {
 	}
 	.ember-chat .chat-messages .chat-line{
     	background-color: transparent;
+	}
+
+	.chat-container, .ember-chat-container, body.ffz-bttv .chat-line .message, body.ffz-bttv .chat-line .timestamp{
+		color:#afafaf !important;
+	}
+
+	.chat-container, .ember-chat-container, body.ffz-bttv .chat-line .message, body.ffz-bttv .chat-line .timestamp{
+		color:#afafaf !important;
+	}
+
+	.chat-line, .conversation-chat-lines>div{
+		border-top:1px solid rgba(white,.1);
+	}
+	.chat-line, .chat-line.notification, .conversation-chat-lines>div{
+		border-bottom:1px solid black;
+	}
+	.ffz-ui-toggle.no-emotes svg.svg-emoticons path, .ffz-ui-toggle svg.svg-emoticons path{
+		fill: $twitchColor;
+	}
+
+	&.ffz-minimal-chat-head.ffz-minimal-chat-input{
+		.chat-header.ui-draggable-handle{
+			display: block !important;
+			z-index: 50;
+			opacity: 0;
+		}
+		.chat-header__button{
+			pointer-events: none;
+		}
+		.TFCO_chatButton{
+			top:7px;
+			opacity: 0.5;
+		}
+		.pinned-cheers.hideModIcons .mod-icons{
+			display: none !important;
+		}
+		&.TFCO_slimMode .ember-chat .chat-messages{
+			bottom: 0 !important;
+		}
 	}
 	// #chat_line_list .line:nth-child(2n), .chat-messages .chat-line:nth-child(2n){
  //    	background-color: rgb(35,35,35);
