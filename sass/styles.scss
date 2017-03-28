@@ -315,6 +315,7 @@ body.TFCO_fullScreenMode {
 	}
 	.ember-chat .chat-messages .chat-line{
     	background-color: transparent;
+		border:none;
 	}
 
 	.chat-container, .ember-chat-container, body.ffz-bttv .chat-line .message, body.ffz-bttv .chat-line .timestamp{
@@ -324,13 +325,14 @@ body.TFCO_fullScreenMode {
 	.chat-container, .ember-chat-container, body.ffz-bttv .chat-line .message, body.ffz-bttv .chat-line .timestamp{
 		color:#afafaf !important;
 	}
-
-	.chat-line, .conversation-chat-lines>div{
-		border-top:1px solid rgba(white,.1);
-	}
-	.chat-line, .chat-line.notification, .conversation-chat-lines>div{
-		border-bottom:1px solid black;
-	}
+	//&.ffz-theater-stats, &.ffz-theater-basic-stats, &.ffz-alias-italics, &.ffz-show-bits-tags, &.ffz-creative-tags, &.ffz-creative-showcase, &.ffz-clickable-mentions {
+	//	.chat-line, .conversation-chat-lines > div {
+	//		border-top: 1px solid rgba(white, .1);
+	//	}
+	//	.chat-line, .chat-line.notification, .conversation-chat-lines > div {
+	//		border-bottom: 1px solid black;
+	//	}
+	//}
 	.ffz-ui-toggle.no-emotes svg.svg-emoticons path, .ffz-ui-toggle svg.svg-emoticons path{
 		fill: $twitchColor;
 	}
