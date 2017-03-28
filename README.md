@@ -11,6 +11,10 @@ Features:
 - Chat properties kept for session.
 - supports windows/mac
 
+hotfix.1.2.3:
+
+- removed line separators.
+
 hotfix.1.2.2:
 
 - Fixed some conflicts with FFZ chat options.
