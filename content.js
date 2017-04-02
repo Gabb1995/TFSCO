@@ -1,9 +1,10 @@
 $( document ).ready(function() {
 
-  var chatBox, chatHeader, savedStyle, tabSavedStyle, chatOpacity, videoFSBtn, chatCloseButton, playerColumn, playerButtonsRight, tabContainer, fsToolBar, fsButton, windowWidth;
+  var chatBox, chatHeader, savedStyle, tabSavedStyle, chatOpacity, chatAlpha, chatPositionAndSize, chatOpacityAndAlpha, videoFSBtn, chatCloseButton, playerColumn, playerButtonsRight, tabContainer, fsToolBar, fsButton, windowWidth, slimModeE, hideStickyCheersE;
   var body = document.body;
   var minimize = false;
   var settings = false;
+  var mouse_in = false;
   var fsPlayerBtn = document.createElement('button');
   var fsContainer = document.createElement('div');
   var chatSettings = document.createElement('div');
@@ -42,11 +43,13 @@ $( document ).ready(function() {
        if (document.querySelector('.fullscreenBtn') === null) {
            minimize = false;
            settings = false;
-           chatSettings.removeEventListener('click', toggleSettingsClass);
-           chatSettings.removeEventListener('click', toggleMinimizeClass);
            declareEssentialsOnTime();
        }
     },2000);
+
+  $("body").mouseup(function(){ 
+        if(!mouse_in) body.classList.remove('TFCO_settingsOpen');
+  });
 
 
   declareEssentialsOnTime();
@@ -75,7 +78,7 @@ $( document ).ready(function() {
           clearInterval(findPlayerColumn);
           playerColumn = $('.player-column');
           playerColumn[0].appendChild(fsContainer);
-          appendDom();
+          // appendDom();
        }
     }, 100);
 
@@ -90,10 +93,8 @@ $( document ).ready(function() {
     }, 100);
   }
   
-
-
-  function clickFullscreen(){
-    videoFSBtn = document.querySelector('.player-button--fullscreen');
+  function addChat(){
+   
     chatCloseButton = document.querySelector('#right_close');
     chatBox.draggable({
       disabled:true,
@@ -113,12 +114,58 @@ $( document ).ready(function() {
       chatCloseButton.click();
     }
     body.classList.add('TFCO_fullScreenMode');
-    videoFSBtn.click();    
   }
+
+  function clickFullscreen(){
+    videoFSBtn = document.querySelector('.player-button--fullscreen');
+    // if(!(window.innerHeight === screen.height)) {
+    //   videoFSBtn.click();
+    //   addChat();    
+    // } else if( (window.innerHeight === screen.height) && body.classList.contains('TFCO_fullScreenMode')) {
+    //   videoFSBtn.click();  
+    // } else {
+    //   addChat();
+    // }
+    videoFSBtn.click();
+      addChat();  
+  }
+
+  // STORAGE 
+  function saveChanges() {
+    // Check that there's some code there.
+    var myObj = {};
+    myObj.chatOpacityAndAlpha = tabSavedStyle;
+    myObj.chatPositionAndSize = savedStyle;
+    myObj.slimModeE = slimModeE;
+    myObj.hideStickyCheersE = hideStickyCheersE;
+
+    // Save it using the Chrome extension storage API.
+    chrome.storage.sync.set({'myObj': myObj}, function() {
+      console.log("saved items");
+    });
+  }
+
+  function loadChanges() {
+     // Save it using the Chrome extension storage API.
+    chrome.storage.sync.get('myObj', function(items) {
+      if (!chrome.runtime.error) {
+
+        tabContainer[0].setAttribute('style', items.myObj.chatOpacityAndAlpha);
+        chatBox[0].setAttribute('style', items.myObj.chatPositionAndSize);
+        if(items.myObj.slimModeE){
+          $(".checkbox_slim_mode label").click();
+        }
+        if(items.myObj.hideStickyCheersE){
+         $(".checkbox_hide_sticky label").click();
+        }
+      }
+    });
+  }
+
+
 
   function rangeOnChangeOpacity(){
     $(document).on('input change', '#CS_opacity', function() {
-        console.log(this.value / 100);
         tabContainer[0].style.opacity = this.value / 100;
     });
   }
@@ -133,8 +180,10 @@ $( document ).ready(function() {
     $("input#CS_hide_sticky").change(function() {
       if ($('input#CS_hide_sticky').is(':checked')) {
         body.classList.add('TFCO_hideSticky');
+        hideStickyCheersE = true;
       } else{
         body.classList.remove('TFCO_hideSticky');
+        hideStickyCheersE = false;
       }
     });
   }
@@ -143,8 +192,10 @@ $( document ).ready(function() {
     $("input#CS_slim_mode").change(function() {
       if ($('input#CS_slim_mode').is(':checked')) {
         body.classList.add('TFCO_slimMode');
+        slimModeE = true;
       } else{
         body.classList.remove('TFCO_slimMode');
+        slimModeE = false;
       }
     });
   }
@@ -162,13 +213,26 @@ $( document ).ready(function() {
 
      chatSettings.addEventListener('click', toggleSettingsClass);
 
-       chatBox[0].appendChild(chatSettingsBoxContainer);
-       chatSettingsBoxContainer.innerHTML = chatSettingsBox;
+     chatBox[0].appendChild(chatSettingsBoxContainer);
+     chatSettingsBoxContainer.innerHTML = chatSettingsBox;
+     //clicking outside the settings will close it.
+     $(chatSettingsBoxContainer).hover(function(){ 
+          mouse_in = true; 
+      }, function(){ 
+          mouse_in = false; 
+      });
+
+     $(chatSettings).hover(function(){ 
+          mouse_in = true; 
+      }, function(){ 
+          mouse_in = false; 
+      });
   }
 
-    function toggleMinimizeClass(){
-        body.classList.toggle('TFCO_minimized');
-    }
+  function toggleMinimizeClass(){
+      body.classList.toggle('TFCO_minimized');
+  }
+
   function addChatMinimize(){
 
     minimize = true;
@@ -197,10 +261,7 @@ $( document ).ready(function() {
       rangeOnChangeColorOpacity();
       hideStickyCheers();
       slimMode();
-      if(savedStyle){
-          chatBox[0].setAttribute('style', savedStyle);
-          tabContainer[0].setAttribute('style', tabSavedStyle);
-      }
+      loadChanges();
   }
 
   function onExitFullscreen(){
@@ -210,6 +271,7 @@ $( document ).ready(function() {
         savedStyle = chatBox[0].style.cssText;
         tabSavedStyle = tabContainer[0].style.cssText;
       }
+      saveChanges();
       body.classList.remove('TFCO_fullScreenMode');
       chatBox.removeAttr("style");
       tabContainer.removeAttr("style");
@@ -226,7 +288,12 @@ $( document ).ready(function() {
 
   //when entering fullscreen and out
   //timeout for mac
+  var isMac = navigator.platform.toUpperCase().indexOf('MAC')>=0;
+  var timer = 10;
   function changeHandler(){
+    if (isMac){
+      timer = 300
+    }
     clearTimeout(handlerTimeout);
     handlerTimeout = setTimeout(function(){
         //ENTER FULLSCREEN
@@ -236,7 +303,7 @@ $( document ).ready(function() {
         } else {
           onExitFullscreen();
         }
-    },300);
+    },timer);
   }
 
   if (document.addEventListener){
