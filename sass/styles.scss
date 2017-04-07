@@ -42,12 +42,13 @@ $twitchColor: #623ca5;
 }
 
 .player-button.TFCO-PlayerBtn{
-	background-size: 23px;
+	background-size: 20px;
     background-position: 5px 5px; 
 	background-repeat:no-repeat;
-	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAdVBMVEX////h2u/d1OzTyObMwOLKvuHMwOLHut/Bs9zGuN6yoNOsmdCmkc2WfcOTesKchceOc7+WfcOIbLt6W7N2VrFzUq9vTK1rR6poRKlmQadiPKVjPaVuS6xrR6pnQqhiPKViPKVkPqZlQKeQdcCxntL/swD///88wTzgAAAAIHRSTlMABgwbICIkJiwtQEZOYmZmbG90hYmNk5mbn6Ojp6ywt3+AY/wAAAC/SURBVHja7dLHDsJADEVR03vvpsSU8P+fSBSJSQRzRbwF3mY291hZRLIdzLGsbyROMDEnOGbPvdpy0E6cYGZOcHKCXuIEV4uCNF8MXLzAvhGkb/sDsR/7NW5VQegBhEX6MwDqtQ+A+rEAgH4hAVTpbSMAoN83AUCvAwmgWNG8TqcSA9jbUgBAv60BgF47AgD6oQCAfi4Eor2tBEG039VLQMsze/ZaXldgGr553YoGBHQk1aZwngGcZ4DnGXw8/wD8Aw1WPQF+fAAAAABJRU5ErkJggg==);
+	opacity:0.9;
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAclBMVEVkPaiSeMOYfsabgsechMidhMieh8qgiMqgicuhisujjMyjjcykjs2lj82mkM6nkc6nks+ok8+plM6plM+qlc+rls+rl9Csl9CsmNGtmdGumtGumtKvm9KwndOxndP6+fz7+v39/f7+/f7+/v//swD///8rufdhAAAAuklEQVR4Ae3Vu26DQBCF4ZM7WRLCJYHY4MuynPd/RWtGK8uN2XEDDV81xfktFwhA+hcYZSMJkv4dJnkgCU8yOBgUQaZ41aJA0q/uP4EPOdgi4Z+y/5LTaTFg1kBRQpU0ahD90WSHqwMNjrhBA6wZTNEWrBNMd2zBssH2tK4eGCwbPPq672nSIepoVEM1FD1m6Z8OP3JWetZI2Ossj9/30SGp1SKD7P0bDCr9aZA8P8PkWwqQpycYuUBeADOQzjuv/emgAAAAAElFTkSuQmCC);
 	&:hover{
-		opacity:0.9;
+		opacity:0.7;
 	}
 }
 
@@ -55,13 +56,17 @@ $twitchColor: #623ca5;
 body.TFCO_fullScreenMode {
 
 	#right_col, .app-main.theatre #right_col{
-		z-index: 9999999999 !important;
+		z-index: 2147483647 !important;
 		background: transparent;
 		bottom:initial;
 		right:initial;
 		height:50%;
 		min-width: 250px;
-		min-height:235px;
+		min-height:235px;	
+	}
+
+	.tipsy{
+		z-index:9999999999!important;
 	}
 	.tab-container{
 		background: rgba(0,0,0,0.5);
@@ -75,24 +80,41 @@ body.TFCO_fullScreenMode {
 		box-shadow: none;
 		border:none;
 	}
+	.chat-header.main-header, .top-notification.room-invitation, .chat-header.all-rooms-header{
+		display: block !important;
+	}
 
 	textarea, .theatre .ember-chat .chat-interface .textarea-contain textarea{
 		background:transparent;
 		pointer-events:auto;
 		color: #dfdfdf;
 	    border-color: rgba(255,255,255,0.2);	
+	    &:focus{
+	    	outline:none;
+	    	box-shadow:none;
+	    }
 	}
 
 	.ember-chat .chat-messages .chat-line.admin .message, .ember-chat .chat-messages .chat-line.notification .message{
 		color:#afafaf;
 	}
+	#chat_lines_list, #chat_lines, .ember-chat, .ember-view.ember-chat.roomMode, .chat-container, .ember-chat-container{
+		color:#d3d3d3;
+	}
 
-
+	.ember-chat .chat-messages .chat-lines{
+		color:#d3d3d3
+	}
+	.ember-chat .chat-room, .ember-chat .chat-rooms{
+		top: 50px !important;
+	}
 	.ember-chat .chat-header{
 	    box-shadow: inset 0 -1px 0 0 rgba(255,255,255,0.2);
 	    background: transparent !important;
 		cursor:move;
-
+		height:50px;
+		overflow: hidden;
+		@include transition(all 0.2s);
 		&:hover{
 			background:rgba(200,200,200,0.1);
 		}
@@ -155,15 +177,17 @@ body.TFCO_fullScreenMode {
 	    z-index: 5;
 	    cursor: pointer;
 	    top:16px;
-	    @include transition(background 0.2s);
+	    @include transition(background 0.2s, opacity 0.2s);
+	    opacity:0.5;
 	    &:hover{
 	    	background: lighten($accentColor, 20%);
 	    }
 	    &.TFCO_chatMinimize{    
 		    right: 10px;
 		}
+	
 	    &.TFCO_chatSettings{
-		    right: 31px;
+		    right: 30px;
 	    	background-position:center;
 	    	background-repeat:no-repeat;
 	    	background-size: 70%;
@@ -198,6 +222,7 @@ body.TFCO_fullScreenMode {
 			position:fixed;
 			right:0;
 			top:calc(50% - 8px);
+			opacity:1 !important;
 		    &:after{
 		    	opacity:1;
 		    }
@@ -254,33 +279,67 @@ body.TFCO_fullScreenMode {
 		}
 	}
 	&.TFCO_slimMode{
+		.ember-chat .chat-interface .more-messages-indicator{
+			top: -57px;
+		}
+		#right_col, .app-main.theatre #right_col{
+			overflow: hidden;
+		}
 		.ember-chat .chat-messages{
 			    bottom: 30px;
 		}
 		.ember-chat .chat-interface{
-			height:30px !important;
+			height:0 !important;
+			@include transition(all 0.2s);
+
 		}
 		button.qa-chat-buttons__submit{
 			display:none;
+
 		}
 		.ember-chat .chat-interface .chat-buttons-container{
 			padding-top:0;
+			box-shadow: rgba(255, 255, 255, 0.2) 0px 1px 0px 0px inset;
+			margin:0;
+			padding:0 10px;
+			.button, #emote-menu-button{
+				background-color:transparent;
+			}
 		}
 		.ember-chat .chat-header{
 			padding:0;
-			height:30px;
+			height:0px;
 		}
 		.ember-chat .chat-header .chat-header__button{
 			top:0;
 		}
 		.ember-chat .chat-interface .textarea-contain{
-			display:none;
+			height: 30px;
+		    line-height: 30px;
+		    margin: 0;
+		    top: -30px;
+		    width: 100%;
+		    box-shadow: rgba(255, 255, 255, 0.2) 0px 1px 0px 0px inset;
+		    position: absolute;
+		    box-sizing: content-box;
+
+		    .js-chat-input.chat-input.ember-view{
+		    	height: 100%;
+		    	textarea{
+		    		    height: 100% !important;
+					    border:none !important;
+					    padding: 0 50px 0 10px;
+		    	}
+		    }
 		}
 		.ember-chat .chat-room, .ember-chat .chat-rooms{
-			top:30px;
+			top:0px !important;
+			bottom:0;
+			@include transition(all 0.2s);
 		}
 		.TFCO_chatButton{
 			top:6px;
+			opacity:0;
 		}
 		.CS_box{
 			top:30px;
@@ -289,6 +348,26 @@ body.TFCO_fullScreenMode {
 			.TFCO_chatMinimize{
 				@include transition(none);
 				top:calc(50% - 8px);
+			}
+		}
+
+		#right_col, .app-main.theatre #right_col{
+			&:hover{
+				.TFCO_chatButton{
+					opacity:1;
+				}
+				.ember-chat .chat-header {
+					height: 30px;
+				}
+				.ember-chat .chat-room, .ember-chat .chat-rooms{
+					top:30px !important;
+				}
+				.ember-chat .chat-interface{
+					height:30px !important;
+				}
+				.ember-chat .chat-messages{
+				    bottom: 60px;
+				}
 			}
 		}
 	}
