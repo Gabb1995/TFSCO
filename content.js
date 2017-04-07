@@ -98,14 +98,15 @@ $( document ).ready(function() {
     chatCloseButton = document.querySelector('#right_close');
     chatBox.draggable({
       disabled:true,
-      handle: chatHeader[0]
+      handle: chatHeader[0],
+      containment: "document"
     });
     chatBox.resizable({disabled:true});
 
     if (!minimize){
         addChatMinimize();
     }
-     if (!settings){
+    if (!settings){
       addChatSettings();
     }
 
@@ -113,32 +114,34 @@ $( document ).ready(function() {
     if(chatBox[0].classList.contains('closed')){
       chatCloseButton.click();
     }
+    onEnterFullscreen();
     body.classList.add('TFCO_fullScreenMode');
   }
 
   function clickFullscreen(){
     videoFSBtn = document.querySelector('.player-button--fullscreen');
-    // if(!(window.innerHeight === screen.height)) {
-    //   videoFSBtn.click();
-    //   addChat();    
-    // } else if( (window.innerHeight === screen.height) && body.classList.contains('TFCO_fullScreenMode')) {
-    //   videoFSBtn.click();  
-    // } else {
-    //   addChat();
-    // }
-    videoFSBtn.click();
-      addChat();  
+    if(!(window.innerHeight === screen.height)) {
+      videoFSBtn.click();
+      addChat();    
+    } else if( (window.innerHeight === screen.height) && body.classList.contains('TFCO_fullScreenMode')) {
+      videoFSBtn.click();  
+    } else {
+      addChat();
+    }
+    // videoFSBtn.click();
+    //   addChat();  
   }
 
   // STORAGE 
   function saveChanges() {
+    windowWidth = $(window).width();
     // Check that there's some code there.
     var myObj = {};
     myObj.chatOpacityAndAlpha = tabSavedStyle;
     myObj.chatPositionAndSize = savedStyle;
     myObj.slimModeE = slimModeE;
     myObj.hideStickyCheersE = hideStickyCheersE;
-
+    myObj.windowWidth = windowWidth;
     // Save it using the Chrome extension storage API.
     chrome.storage.sync.set({'myObj': myObj}, function() {
       console.log("saved items");
@@ -149,6 +152,10 @@ $( document ).ready(function() {
      // Save it using the Chrome extension storage API.
     chrome.storage.sync.get('myObj', function(items) {
       if (!chrome.runtime.error) {
+
+        if (items.myObj.windowWidth != $(window).width()){
+          items.myObj.chatPositionAndSize = null;
+        }
 
         tabContainer[0].setAttribute('style', items.myObj.chatOpacityAndAlpha);
         chatBox[0].setAttribute('style', items.myObj.chatPositionAndSize);
@@ -246,11 +253,8 @@ $( document ).ready(function() {
 
   function onEnterFullscreen(){
       console.log('go fullscreen');
-      if (windowWidth != $(window).width()){
-        savedStyle = null;
-        windowWidth = $(window).width();
-      }
-      windowWidth = $(window).width();
+      
+      
       chatBox.draggable({
         disabled: false
       });
