@@ -5,9 +5,11 @@ $( document ).ready(function() {
   var minimize = false;
   var settings = false;
   var mouse_in = false;
+
   var fsPlayerBtn = document.createElement('button');
   var fsContainer = document.createElement('div');
   var chatSettings = document.createElement('div');
+  var chatMinimze = document.createElement('div');
   var chatSettingsBoxContainer = document.createElement('div');
   var chatSettingsBox = "<div class='CS_box'>"+
                           "<div class='CS_box_content'>"+
@@ -35,8 +37,13 @@ $( document ).ready(function() {
                             "</div>"+
                            "</div>"+
                         "</div>";
-  var chatMinimze = document.createElement('div');
-
+  
+  // timer delay for showing chat overlay
+  var isMac = navigator.platform.toUpperCase().indexOf('MAC')>=0;
+  var timer = 10;
+  if (isMac){
+    timer = 300
+  }
 
   // check if we are already initialized if not reinitialize
   var checkReady = setInterval(function() {
@@ -69,16 +76,6 @@ $( document ).ready(function() {
        if ($('.tab-container').length) {
           tabContainer = $('.tab-container');
           clearInterval(findTabContainer);
-       }
-    }, 100);
-
-    //wait for the player-column to load
-    var findPlayerColumn = setInterval(function() {
-       if ($('.player-column').length) {
-          clearInterval(findPlayerColumn);
-          playerColumn = $('.player-column');
-          playerColumn[0].appendChild(fsContainer);
-          // appendDom();
        }
     }, 100);
 
@@ -118,11 +115,17 @@ $( document ).ready(function() {
     body.classList.add('TFCO_fullScreenMode');
   }
 
+  var enterFullscreenHandlerTimeout;
+
   function clickFullscreen(){
     videoFSBtn = document.querySelector('.player-button--fullscreen');
     if(!(window.innerHeight === screen.height)) {
       videoFSBtn.click();
-      addChat();    
+      
+      clearTimeout(enterFullscreenHandlerTimeout);
+      enterFullscreenHandlerTimeout = setTimeout(function(){
+        addChat();    
+      },timer);
     } else if( (window.innerHeight === screen.height) && body.classList.contains('TFCO_fullScreenMode')) {
       videoFSBtn.click();  
     } else {
@@ -134,7 +137,7 @@ $( document ).ready(function() {
 
   // STORAGE 
   function saveChanges() {
-    windowWidth = $(window).width();
+    windowWidth = window.screen.availWidth;
     // Check that there's some code there.
     var myObj = {};
     myObj.chatOpacityAndAlpha = tabSavedStyle;
@@ -144,7 +147,7 @@ $( document ).ready(function() {
     myObj.windowWidth = windowWidth;
     // Save it using the Chrome extension storage API.
     chrome.storage.sync.set({'myObj': myObj}, function() {
-      console.log("saved items");
+      console.log("options saved");
     });
   }
 
@@ -152,11 +155,11 @@ $( document ).ready(function() {
      // Save it using the Chrome extension storage API.
     chrome.storage.sync.get('myObj', function(items) {
       if (!chrome.runtime.error) {
-
-        if (items.myObj.windowWidth != $(window).width()){
+        var ww = items.myObj.windowWidth
+        // if saved window size is bigger then the available one, reset position and size
+        if (ww > (window.screen.availWidth + 50)){
           items.myObj.chatPositionAndSize = null;
         }
-
         tabContainer[0].setAttribute('style', items.myObj.chatOpacityAndAlpha);
         chatBox[0].setAttribute('style', items.myObj.chatPositionAndSize);
         if(items.myObj.slimModeE){
@@ -166,6 +169,7 @@ $( document ).ready(function() {
          $(".checkbox_hide_sticky label").click();
         }
       }
+      console.log("options loaded");
     });
   }
 
@@ -177,7 +181,7 @@ $( document ).ready(function() {
     });
   }
 
-  function rangeOnChangeColorOpacity(){
+  function rangeOnChangeAlpha(){
     $(document).on('input change', '#CS_color_opacity', function() {
        tabContainer[0].style.backgroundColor = "rgba(0,0,0,"+this.value / 100+")";
     });
@@ -244,7 +248,6 @@ $( document ).ready(function() {
 
     minimize = true;
     //create chat minimize button
-    
     chatMinimze.classList.add('TFCO_chatMinimize', 'TFCO_chatButton');
     chatBox[0].appendChild(chatMinimze);
 
@@ -253,8 +256,6 @@ $( document ).ready(function() {
 
   function onEnterFullscreen(){
       console.log('go fullscreen');
-      
-      
       chatBox.draggable({
         disabled: false
       });
@@ -262,7 +263,7 @@ $( document ).ready(function() {
         disabled: false
       });
       rangeOnChangeOpacity();
-      rangeOnChangeColorOpacity();
+      rangeOnChangeAlpha();
       hideStickyCheers();
       slimMode();
       loadChanges();
@@ -288,23 +289,16 @@ $( document ).ready(function() {
       console.log('exit fullscreen');
   }
 
-  var handlerTimeout;
-
+  var exitFullscreenHandlerTimeout;
+  
   //when entering fullscreen and out
   //timeout for mac
-  var isMac = navigator.platform.toUpperCase().indexOf('MAC')>=0;
-  var timer = 10;
+  
   function changeHandler(){
-    if (isMac){
-      timer = 300
-    }
-    clearTimeout(handlerTimeout);
-    handlerTimeout = setTimeout(function(){
+    clearTimeout(exitFullscreenHandlerTimeout);
+    exitFullscreenHandlerTimeout = setTimeout(function(){
         //ENTER FULLSCREEN
-        if( window.innerHeight === screen.height) {
-          onEnterFullscreen();
-        //EXIT FULLSCREEN
-        } else {
+        if(!(window.innerHeight === screen.height)) {
           onExitFullscreen();
         }
     },timer);
@@ -314,15 +308,6 @@ $( document ).ready(function() {
       document.addEventListener('webkitfullscreenchange', changeHandler, false);
       document.addEventListener('mozfullscreenchange', changeHandler, false);
       document.addEventListener('fullscreenchange', changeHandler, false);
-      document.addEventListener('MSFullscreenChange', changeHandler, false);
-  }
-
-  function appendDom(){
-    fsToolBar = "<div class='fullscreenBtn'>Start chat in fullscreen!</div>";
-    fsContainer.innerHTML = fsToolBar;
-    fsContainer.classList.add('fsContainer');
-    fsButton = document.querySelector('.fullscreenBtn');
-    fsButton.addEventListener('click', clickFullscreen);
   }
 
   function appendPlayerBtn(){
