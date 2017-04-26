@@ -257,11 +257,14 @@ $( document ).ready(function() {
   function onEnterFullscreen(){
       console.log('go fullscreen');
       chatBox.draggable({
-        disabled: false
+        disabled: false,
+        start:function(event,ui){
+          $(this).removeClass('ui-draggable-dragging')
+        }
       });
       chatBox.resizable({
         disabled: false
-      });
+      }); 
       rangeOnChangeOpacity();
       rangeOnChangeAlpha();
       hideStickyCheers();

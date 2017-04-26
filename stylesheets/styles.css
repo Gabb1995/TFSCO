@@ -221,14 +221,19 @@ body.TFCO_fullScreenMode .emoticon-selector-toggle svg path, body.TFCO_fullScree
 body.TFCO_fullScreenMode .room-title {
   color: #dfdfdf;
 }
-/* line 143, ../sass/styles.scss */
+/* line 144, ../sass/styles.scss */
+body.TFCO_fullScreenMode .ui-draggable.ui-draggable-dragging {
+  padding: 0;
+  border: none;
+}
+/* line 149, ../sass/styles.scss */
 body.TFCO_fullScreenMode .ui-resizable-handle {
   width: 15px;
   height: 15px;
   position: absolute;
   cursor: nwse-resize;
 }
-/* line 150, ../sass/styles.scss */
+/* line 156, ../sass/styles.scss */
 body.TFCO_fullScreenMode .ui-resizable-handle.ui-icon-gripsmall-diagonal-se {
   bottom: 0;
   right: 0;
@@ -237,19 +242,19 @@ body.TFCO_fullScreenMode .ui-resizable-handle.ui-icon-gripsmall-diagonal-se {
   background-repeat: no-repeat;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAAElBMVEUAAAAAAAD///9ycnKmpqbDw8NP6HFHAAAABnRSTlMAZmaMqL1duDaXAAAANElEQVR4AWOgLWBkwSXOhEucaQDFmVlwiDMz4RJnGhhxKIVLnAlVnIUZQUEAK4TFjKCoCwAVoAEkUgxjHAAAAABJRU5ErkJggg==);
 }
-/* line 160, ../sass/styles.scss */
+/* line 166, ../sass/styles.scss */
 body.TFCO_fullScreenMode .ui-resizable-handle.ui-resizable-e {
   display: none;
 }
-/* line 164, ../sass/styles.scss */
+/* line 170, ../sass/styles.scss */
 body.TFCO_fullScreenMode .ui-resizable-handle.ui-resizable-s {
   display: none;
 }
-/* line 167, ../sass/styles.scss */
+/* line 173, ../sass/styles.scss */
 body.TFCO_fullScreenMode .message-line {
   cursor: text;
 }
-/* line 171, ../sass/styles.scss */
+/* line 177, ../sass/styles.scss */
 body.TFCO_fullScreenMode .TFCO_chatButton {
   width: 17px;
   height: 17px;
@@ -265,15 +270,15 @@ body.TFCO_fullScreenMode .TFCO_chatButton {
   transition: background 0.2s, opacity 0.2s;
   opacity: 0.5;
 }
-/* line 182, ../sass/styles.scss */
+/* line 188, ../sass/styles.scss */
 body.TFCO_fullScreenMode .TFCO_chatButton:hover {
   background: #ffd166;
 }
-/* line 185, ../sass/styles.scss */
+/* line 191, ../sass/styles.scss */
 body.TFCO_fullScreenMode .TFCO_chatButton.TFCO_chatMinimize {
   right: 10px;
 }
-/* line 189, ../sass/styles.scss */
+/* line 195, ../sass/styles.scss */
 body.TFCO_fullScreenMode .TFCO_chatButton.TFCO_chatSettings {
   right: 30px;
   background-position: center;
@@ -281,7 +286,7 @@ body.TFCO_fullScreenMode .TFCO_chatButton.TFCO_chatSettings {
   background-size: 70%;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAQAAAC1QeVaAAAAs0lEQVQY02P4z4AbInMs/4OAArqkzP9H/w3/p4Mlff77/r/6nx0heQUo+A8I/8Pp7QjJ6P/owAUiKfRf7H8mWGATUIDj/1EwO+g/P0hyDlTtr/88YFMUoPx3IMm5UM53iCP+S0P570GSEv+V/5eBuQvBklvB7Lz/2jAHeUFVfwPqhwBThGsvYLj2AEJSCajD538RWDjuf+L/T/9FkYOPEYitwZKaUB5a2Mr93/B/KdDfcBEAwFsWhnIu/UEAAAAASUVORK5CYII=);
 }
-/* line 199, ../sass/styles.scss */
+/* line 205, ../sass/styles.scss */
 body.TFCO_fullScreenMode .TFCO_chatMinimize:before {
   content: '';
   height: 2px;
@@ -292,7 +297,7 @@ body.TFCO_fullScreenMode .TFCO_chatMinimize:before {
   left: 4px;
   display: block;
 }
-/* line 209, ../sass/styles.scss */
+/* line 215, ../sass/styles.scss */
 body.TFCO_fullScreenMode .TFCO_chatMinimize:after {
   content: '';
   height: 8px;
@@ -303,44 +308,44 @@ body.TFCO_fullScreenMode .TFCO_chatMinimize:after {
   left: 7px;
   opacity: 0;
 }
-/* line 221, ../sass/styles.scss */
+/* line 227, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_minimized .TFCO_chatMinimize {
   position: fixed;
   right: 0;
   top: calc(50% - 8px);
   opacity: 1 !important;
 }
-/* line 226, ../sass/styles.scss */
+/* line 232, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_minimized .TFCO_chatMinimize:after {
   opacity: 1;
 }
-/* line 230, ../sass/styles.scss */
+/* line 236, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_minimized .TFCO_chatSettings {
   display: none;
 }
-/* line 233, ../sass/styles.scss */
+/* line 239, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_minimized .rightcol-content {
   height: 0;
   overflow: hidden;
   pointer-events: none;
 }
-/* line 238, ../sass/styles.scss */
+/* line 244, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_minimized .ui-resizable-handle {
   opacity: 0;
   pointer-events: none;
 }
-/* line 242, ../sass/styles.scss */
+/* line 248, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_minimized .CS_box {
   opacity: 0;
   pointer-events: none;
 }
-/* line 246, ../sass/styles.scss */
+/* line 252, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_minimized #right_col {
   height: 16px !important;
   min-height: 16px !important;
   background-color: transparent !important;
 }
-/* line 250, ../sass/styles.scss */
+/* line 256, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_minimized #right_col:before {
   position: fixed;
   content: '';
@@ -357,38 +362,38 @@ body.TFCO_fullScreenMode.TFCO_minimized #right_col:before {
   -webkit-transform: translate(65%, -50%);
   transform: translate(65%, -50%);
 }
-/* line 266, ../sass/styles.scss */
+/* line 272, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_settingsOpen .CS_box {
   pointer-events: auto;
 }
-/* line 269, ../sass/styles.scss */
+/* line 275, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_settingsOpen .CS_box_content {
   -moz-transform: translateX(0%);
   -ms-transform: translateX(0%);
   -webkit-transform: translateX(0%);
   transform: translateX(0%);
 }
-/* line 274, ../sass/styles.scss */
+/* line 280, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_hideSticky .sticky-message--pinned-cheers, body.TFCO_fullScreenMode.TFCO_hideSticky .pinned-cheer__hack-box {
   display: none !important;
 }
-/* line 277, ../sass/styles.scss */
+/* line 283, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_hideSticky .ember-chat .chat-messages {
   top: 0 !important;
 }
-/* line 282, ../sass/styles.scss */
+/* line 288, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_slimMode .ember-chat .chat-interface .more-messages-indicator {
   top: -57px;
 }
-/* line 285, ../sass/styles.scss */
+/* line 291, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_slimMode #right_col, body.TFCO_fullScreenMode.TFCO_slimMode .app-main.theatre #right_col {
   overflow: hidden;
 }
-/* line 288, ../sass/styles.scss */
+/* line 294, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_slimMode .ember-chat .chat-messages {
   bottom: 30px;
 }
-/* line 291, ../sass/styles.scss */
+/* line 297, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_slimMode .ember-chat .chat-interface {
   height: 0 !important;
   -moz-transition: all 0.2s;
@@ -396,31 +401,31 @@ body.TFCO_fullScreenMode.TFCO_slimMode .ember-chat .chat-interface {
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
-/* line 296, ../sass/styles.scss */
+/* line 302, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_slimMode button.qa-chat-buttons__submit {
   display: none;
 }
-/* line 300, ../sass/styles.scss */
+/* line 306, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_slimMode .ember-chat .chat-interface .chat-buttons-container {
   padding-top: 0;
   box-shadow: rgba(255, 255, 255, 0.2) 0px 1px 0px 0px inset;
   margin: 0;
   padding: 0 10px;
 }
-/* line 305, ../sass/styles.scss */
+/* line 311, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_slimMode .ember-chat .chat-interface .chat-buttons-container .button, body.TFCO_fullScreenMode.TFCO_slimMode .ember-chat .chat-interface .chat-buttons-container #emote-menu-button {
   background-color: transparent;
 }
-/* line 309, ../sass/styles.scss */
+/* line 315, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_slimMode .ember-chat .chat-header {
   padding: 0;
   height: 0px;
 }
-/* line 313, ../sass/styles.scss */
+/* line 319, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_slimMode .ember-chat .chat-header .chat-header__button {
   top: 0;
 }
-/* line 316, ../sass/styles.scss */
+/* line 322, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_slimMode .ember-chat .chat-interface .textarea-contain {
   height: 30px;
   line-height: 30px;
@@ -431,17 +436,17 @@ body.TFCO_fullScreenMode.TFCO_slimMode .ember-chat .chat-interface .textarea-con
   position: absolute;
   box-sizing: content-box;
 }
-/* line 326, ../sass/styles.scss */
+/* line 332, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_slimMode .ember-chat .chat-interface .textarea-contain .js-chat-input.chat-input.ember-view {
   height: 100%;
 }
-/* line 328, ../sass/styles.scss */
+/* line 334, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_slimMode .ember-chat .chat-interface .textarea-contain .js-chat-input.chat-input.ember-view textarea {
   height: 100% !important;
   border: none !important;
   padding: 0 50px 0 10px;
 }
-/* line 335, ../sass/styles.scss */
+/* line 341, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_slimMode .ember-chat .chat-room, body.TFCO_fullScreenMode.TFCO_slimMode .ember-chat .chat-rooms {
   top: 0px !important;
   bottom: 0;
@@ -450,16 +455,16 @@ body.TFCO_fullScreenMode.TFCO_slimMode .ember-chat .chat-room, body.TFCO_fullScr
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
-/* line 340, ../sass/styles.scss */
+/* line 346, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_slimMode .TFCO_chatButton {
   top: 6px;
   opacity: 0;
 }
-/* line 344, ../sass/styles.scss */
+/* line 350, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_slimMode .CS_box {
   top: 30px;
 }
-/* line 348, ../sass/styles.scss */
+/* line 354, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_slimMode.TFCO_minimized .TFCO_chatMinimize {
   -moz-transition: none;
   -o-transition: none;
@@ -467,93 +472,93 @@ body.TFCO_fullScreenMode.TFCO_slimMode.TFCO_minimized .TFCO_chatMinimize {
   transition: none;
   top: calc(50% - 8px);
 }
-/* line 356, ../sass/styles.scss */
+/* line 362, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_slimMode #right_col:hover .TFCO_chatButton, body.TFCO_fullScreenMode.TFCO_slimMode .app-main.theatre #right_col:hover .TFCO_chatButton {
   opacity: 1;
 }
-/* line 359, ../sass/styles.scss */
+/* line 365, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_slimMode #right_col:hover .ember-chat .chat-header, body.TFCO_fullScreenMode.TFCO_slimMode .app-main.theatre #right_col:hover .ember-chat .chat-header {
   height: 30px;
 }
-/* line 362, ../sass/styles.scss */
+/* line 368, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_slimMode #right_col:hover .ember-chat .chat-room, body.TFCO_fullScreenMode.TFCO_slimMode #right_col:hover .ember-chat .chat-rooms, body.TFCO_fullScreenMode.TFCO_slimMode .app-main.theatre #right_col:hover .ember-chat .chat-room, body.TFCO_fullScreenMode.TFCO_slimMode .app-main.theatre #right_col:hover .ember-chat .chat-rooms {
   top: 30px !important;
 }
-/* line 365, ../sass/styles.scss */
+/* line 371, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_slimMode #right_col:hover .ember-chat .chat-interface, body.TFCO_fullScreenMode.TFCO_slimMode .app-main.theatre #right_col:hover .ember-chat .chat-interface {
   height: 30px !important;
 }
-/* line 368, ../sass/styles.scss */
+/* line 374, ../sass/styles.scss */
 body.TFCO_fullScreenMode.TFCO_slimMode #right_col:hover .ember-chat .chat-messages, body.TFCO_fullScreenMode.TFCO_slimMode .app-main.theatre #right_col:hover .ember-chat .chat-messages {
   bottom: 60px;
 }
-/* line 376, ../sass/styles.scss */
+/* line 382, ../sass/styles.scss */
 body.TFCO_fullScreenMode #chat_lines_list, body.TFCO_fullScreenMode #chat_lines, body.TFCO_fullScreenMode .ember-chat, body.TFCO_fullScreenMode .ember-view.ember-chat.roomMode, body.TFCO_fullScreenMode .chat-container, body.TFCO_fullScreenMode .ember-chat-container, body.TFCO_fullScreenMode #channel-prompt, body.TFCO_fullScreenMode .ember-chat .chat-messages, body.TFCO_fullScreenMode #chat_text_input, body.TFCO_fullScreenMode #chat_text_login, body.TFCO_fullScreenMode .ember-chat .chat-interface textarea {
   background: transparent !important;
 }
-/* line 379, ../sass/styles.scss */
+/* line 385, ../sass/styles.scss */
 body.TFCO_fullScreenMode #right_col, body.TFCO_fullScreenMode #right_col .content .top #right_nav, body.TFCO_fullScreenMode #right_col .content .top, body.TFCO_fullScreenMode #right_col .content .bottom #controls, body.TFCO_fullScreenMode .rightcol-content, body.TFCO_fullScreenMode #right_col .top #right_nav, body.TFCO_fullScreenMode #right_col .top, body.TFCO_fullScreenMode #right_col .bottom #controls, body.TFCO_fullScreenMode .ember-chat .chat-interface {
   background: transparent !important;
 }
-/* line 382, ../sass/styles.scss */
+/* line 388, ../sass/styles.scss */
 body.TFCO_fullScreenMode .rightcol-content {
   background: transparent !important;
   z-index: initial;
 }
-/* line 386, ../sass/styles.scss */
+/* line 392, ../sass/styles.scss */
 body.TFCO_fullScreenMode .chat-lines .notice {
   background: rgba(35, 35, 35, 0.6) !important;
 }
-/* line 389, ../sass/styles.scss */
+/* line 395, ../sass/styles.scss */
 body.TFCO_fullScreenMode #bttvSettingsPanel, body.TFCO_fullScreenMode .emote-menu {
   z-index: 9999999999 !important;
 }
-/* line 392, ../sass/styles.scss */
+/* line 398, ../sass/styles.scss */
 body.TFCO_fullScreenMode #bttv-channel-state-contain {
   top: -20px;
 }
-/* line 395, ../sass/styles.scss */
+/* line 401, ../sass/styles.scss */
 body.TFCO_fullScreenMode .ember-chat .chat-messages .chat-line {
   background-color: transparent;
   border: none;
 }
-/* line 400, ../sass/styles.scss */
+/* line 406, ../sass/styles.scss */
 body.TFCO_fullScreenMode .chat-container, body.TFCO_fullScreenMode .ember-chat-container, body.TFCO_fullScreenMode body.ffz-bttv .chat-line .message, body.TFCO_fullScreenMode body.ffz-bttv .chat-line .timestamp {
   color: #afafaf !important;
 }
-/* line 404, ../sass/styles.scss */
+/* line 410, ../sass/styles.scss */
 body.TFCO_fullScreenMode .chat-container, body.TFCO_fullScreenMode .ember-chat-container, body.TFCO_fullScreenMode body.ffz-bttv .chat-line .message, body.TFCO_fullScreenMode body.ffz-bttv .chat-line .timestamp {
   color: #afafaf !important;
 }
-/* line 415, ../sass/styles.scss */
+/* line 421, ../sass/styles.scss */
 body.TFCO_fullScreenMode .ffz-ui-toggle.no-emotes svg.svg-emoticons path, body.TFCO_fullScreenMode .ffz-ui-toggle svg.svg-emoticons path {
   fill: #623ca5;
 }
-/* line 420, ../sass/styles.scss */
+/* line 426, ../sass/styles.scss */
 body.TFCO_fullScreenMode.ffz-minimal-chat-head.ffz-minimal-chat-input .chat-header.ui-draggable-handle {
   display: block !important;
   z-index: 50;
   opacity: 0;
 }
-/* line 425, ../sass/styles.scss */
+/* line 431, ../sass/styles.scss */
 body.TFCO_fullScreenMode.ffz-minimal-chat-head.ffz-minimal-chat-input .chat-header__button {
   pointer-events: none;
 }
-/* line 428, ../sass/styles.scss */
+/* line 434, ../sass/styles.scss */
 body.TFCO_fullScreenMode.ffz-minimal-chat-head.ffz-minimal-chat-input .TFCO_chatButton {
   top: 7px;
   opacity: 0.5;
 }
-/* line 432, ../sass/styles.scss */
+/* line 438, ../sass/styles.scss */
 body.TFCO_fullScreenMode.ffz-minimal-chat-head.ffz-minimal-chat-input .pinned-cheers.hideModIcons .mod-icons {
   display: none !important;
 }
-/* line 435, ../sass/styles.scss */
+/* line 441, ../sass/styles.scss */
 body.TFCO_fullScreenMode.ffz-minimal-chat-head.ffz-minimal-chat-input.TFCO_slimMode .ember-chat .chat-messages {
   bottom: 0 !important;
 }
 
-/* line 448, ../sass/styles.scss */
+/* line 454, ../sass/styles.scss */
 .CS_box {
   z-index: 5;
   position: absolute;
@@ -570,7 +575,7 @@ body.TFCO_fullScreenMode.ffz-minimal-chat-head.ffz-minimal-chat-input.TFCO_slimM
   -webkit-transition: top 0.2s;
   transition: top 0.2s;
 }
-/* line 460, ../sass/styles.scss */
+/* line 466, ../sass/styles.scss */
 .CS_box .CS_box_content {
   width: 100%;
   padding: 20px;
@@ -584,7 +589,7 @@ body.TFCO_fullScreenMode.ffz-minimal-chat-head.ffz-minimal-chat-input.TFCO_slimM
   -webkit-transform: translateY(-100%);
   transform: translateY(-100%);
 }
-/* line 466, ../sass/styles.scss */
+/* line 472, ../sass/styles.scss */
 .CS_box .CS_box_content .input_pair {
   display: -webkit-flex;
   display: flex;
@@ -594,19 +599,19 @@ body.TFCO_fullScreenMode.ffz-minimal-chat-head.ffz-minimal-chat-input.TFCO_slimM
   margin-top: 8px;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
 }
-/* line 472, ../sass/styles.scss */
+/* line 478, ../sass/styles.scss */
 .CS_box .CS_box_content .input_pair:first-of-type {
   border-top: none;
   margin-top: 0;
   padding-top: 0;
 }
-/* line 479, ../sass/styles.scss */
+/* line 485, ../sass/styles.scss */
 .CS_box .input_label {
   white-space: nowrap;
   color: #fff;
   margin-bottom: 0;
 }
-/* line 485, ../sass/styles.scss */
+/* line 491, ../sass/styles.scss */
 .CS_box .checkbox_hide_sticky, .CS_box .checkbox_slim_mode {
   width: 80px;
   height: 26px;
@@ -615,7 +620,7 @@ body.TFCO_fullScreenMode.ffz-minimal-chat-head.ffz-minimal-chat-input.TFCO_slimM
   border-radius: 50px;
   box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2);
 }
-/* line 492, ../sass/styles.scss */
+/* line 498, ../sass/styles.scss */
 .CS_box .checkbox_hide_sticky:after, .CS_box .checkbox_slim_mode:after {
   content: 'OFF';
   color: #000;
@@ -626,7 +631,7 @@ body.TFCO_fullScreenMode.ffz-minimal-chat-head.ffz-minimal-chat-input.TFCO_slimM
   font-weight: bold;
   text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.15);
 }
-/* line 502, ../sass/styles.scss */
+/* line 508, ../sass/styles.scss */
 .CS_box .checkbox_hide_sticky:before, .CS_box .checkbox_slim_mode:before {
   content: 'ON';
   color: #ffb300;
@@ -636,7 +641,7 @@ body.TFCO_fullScreenMode.ffz-minimal-chat-head.ffz-minimal-chat-input.TFCO_slimM
   font: 12px/26px Arial, sans-serif;
   font-weight: bold;
 }
-/* line 511, ../sass/styles.scss */
+/* line 517, ../sass/styles.scss */
 .CS_box .checkbox_hide_sticky label, .CS_box .checkbox_slim_mode label {
   display: block;
   width: 34px;
@@ -652,26 +657,26 @@ body.TFCO_fullScreenMode.ffz-minimal-chat-head.ffz-minimal-chat-input.TFCO_slimM
   transition: all 0.4s ease;
   box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
 }
-/* line 526, ../sass/styles.scss */
+/* line 532, ../sass/styles.scss */
 .CS_box .checkbox_hide_sticky input[type=checkbox], .CS_box .checkbox_slim_mode input[type=checkbox] {
   visibility: hidden;
 }
-/* line 528, ../sass/styles.scss */
+/* line 534, ../sass/styles.scss */
 .CS_box .checkbox_hide_sticky input[type=checkbox]:checked + label, .CS_box .checkbox_slim_mode input[type=checkbox]:checked + label {
   left: 43px;
 }
-/* line 535, ../sass/styles.scss */
+/* line 541, ../sass/styles.scss */
 .CS_box input[type=range] {
   -webkit-appearance: none;
   width: 40%;
   margin: 1.2px 0;
   background: transparent;
 }
-/* line 541, ../sass/styles.scss */
+/* line 547, ../sass/styles.scss */
 .CS_box input[type=range]:focus {
   outline: none;
 }
-/* line 544, ../sass/styles.scss */
+/* line 550, ../sass/styles.scss */
 .CS_box input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
   height: 1px;
@@ -679,7 +684,7 @@ body.TFCO_fullScreenMode.ffz-minimal-chat-head.ffz-minimal-chat-input.TFCO_slimM
   background: rgba(243, 240, 242, 0.35);
   border-radius: 20px;
 }
-/* line 552, ../sass/styles.scss */
+/* line 558, ../sass/styles.scss */
 .CS_box input[type=range]::-webkit-slider-thumb {
   height: 10px;
   width: 10px;
@@ -689,7 +694,7 @@ body.TFCO_fullScreenMode.ffz-minimal-chat-head.ffz-minimal-chat-input.TFCO_slimM
   -webkit-appearance: none;
   margin-top: -3.2px;
 }
-/* line 561, ../sass/styles.scss */
+/* line 567, ../sass/styles.scss */
 .CS_box input[type=range]:focus::-webkit-slider-runnable-track {
   background: rgba(254, 254, 254, 0.55);
 }
