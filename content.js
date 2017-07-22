@@ -1,11 +1,13 @@
 $( document ).ready(function() {
 
-  var chatBox, chatHeader, savedStyle, tabSavedStyle, chatOpacity, chatAlpha, chatPositionAndSize, chatOpacityAndAlpha, videoFSBtn, chatCloseButton, playerColumn, playerButtonsRight, tabContainer, fsToolBar, fsButton, windowWidth, slimModeE, hideStickyCheersE;
+  var chatBox, chatHeader, savedStyle, browserZoomLevel, tabSavedStyle, chatOpacity, chatAlpha, chatPositionAndSize, videoFSBtn, chatCloseButton, playerColumn, playerButtonsRight, tabContainer, fsToolBar, fsButton, windowWidth, slimModeE, hideStickyCheersE, chatContainer, bgTheme;
   var body = document.body;
   var minimize = false;
   var settings = false;
   var mouse_in = false;
-
+  var darkTheme = false;
+  var currentOpacity = 1;
+  var currentColorOpacity = 0.85;
   var fsPlayerBtn = document.createElement('button');
   var fsContainer = document.createElement('div');
   var chatSettings = document.createElement('div');
@@ -35,6 +37,13 @@ $( document ).ready(function() {
                                 "<label for='CS_slim_mode'></label>"+
                               "</div>"+
                             "</div>"+
+                            "<div class='input_pair'>" +
+                              "<div class='input_label'>Dark theme</div>" +
+                              "<div class='checkbox_dark_theme'>" +
+                                "<input id='CS_dark_theme' type='checkbox'></input>"+
+                                "<label for='CS_dark_theme'></label>"+
+                              "</div>"+
+                            "</div>"+
                            "</div>"+
                         "</div>";
   
@@ -51,6 +60,7 @@ $( document ).ready(function() {
            minimize = false;
            settings = false;
            declareEssentialsOnTime();
+           clearInterval(checkReady);
        }
     },2000);
 
@@ -60,6 +70,26 @@ $( document ).ready(function() {
 
 
   declareEssentialsOnTime();
+  
+  handleZoom();
+  
+  window.onresize = function onresize(){
+    handleZoom();
+  }
+
+  function handleZoom (){
+      browserZoomLevel = Math.round(window.devicePixelRatio * 100);
+      console.log('zoomLvl: ', browserZoomLevel );
+
+      if(browserZoomLevel != 100){
+        fsPlayerBtn.classList.add('disabled');
+        setTimeout(function(){
+          fsPlayerBtn.classList.remove('disabled');
+        }, 15000);
+      } else {
+        fsPlayerBtn.classList.remove('disabled');
+      }
+  }
 
   function  declareEssentialsOnTime(){
     //wait for the chatbox container to load
@@ -79,9 +109,20 @@ $( document ).ready(function() {
        }
     }, 100);
 
+    //wait for the tab-container to load
+    var findChatContainer = setInterval(function() {
+       if ($('.chat-container').length) {
+                console.log('$$$: ')
+
+          chatContainer = $('.chat-container');
+          clearInterval(findChatContainer);
+       }
+    }, 100);
+
     //wait for the player-buttons to load
     var findPlayerButtons = setInterval(function() {
        if ($('.player-buttons-right').length) {
+        console.log('%%%%: ', $('.player-buttons-right').length)
           clearInterval(findPlayerButtons);
           playerButtonsRight = $('.player-buttons-right');
           playerButtonsRight[0].appendChild(fsPlayerBtn);
@@ -91,7 +132,6 @@ $( document ).ready(function() {
   }
   
   function addChat(){
-   
     chatCloseButton = document.querySelector('#right_close');
     chatBox.draggable({
       disabled:true,
@@ -140,9 +180,11 @@ $( document ).ready(function() {
     windowWidth = window.screen.availWidth;
     // Check that there's some code there.
     var myObj = {};
-    myObj.chatOpacityAndAlpha = tabSavedStyle;
+    myObj.currentOpacity = currentOpacity;
+    myObj.currentColorOpacity = currentColorOpacity;
     myObj.chatPositionAndSize = savedStyle;
     myObj.slimModeE = slimModeE;
+    myObj.darkTheme = darkTheme;
     myObj.hideStickyCheersE = hideStickyCheersE;
     myObj.windowWidth = windowWidth;
     // Save it using the Chrome extension storage API.
@@ -160,10 +202,22 @@ $( document ).ready(function() {
         if (ww > (window.screen.availWidth + 50)){
           items.myObj.chatPositionAndSize = null;
         }
-        tabContainer[0].setAttribute('style', items.myObj.chatOpacityAndAlpha);
+
+        currentColorOpacity = items.myObj.currentColorOpacity;
+
+        chatContainer[0].style.opacity = items.myObj.currentOpacity;
+        $('#CS_opacity').val(items.myObj.currentOpacity*100);
+        // chatContainer[0].style.backgroundColor = "rgba(" + bgTheme + "," + items.myObj.currentColorOpacity + ") !important";
+          chatContainer[0].style.setProperty("background-color", "rgba(" + bgTheme + "," + currentColorOpacity + ")", "important");
+
+        $('#CS_color_opacity').val(items.myObj.currentColorOpacity*100);
+
         chatBox[0].setAttribute('style', items.myObj.chatPositionAndSize);
         if(items.myObj.slimModeE){
           $(".checkbox_slim_mode label").click();
+        }
+        if(items.myObj.darkTheme){
+          $(".checkbox_dark_theme label").click();
         }
         if(items.myObj.hideStickyCheersE){
          $(".checkbox_hide_sticky label").click();
@@ -177,13 +231,17 @@ $( document ).ready(function() {
 
   function rangeOnChangeOpacity(){
     $(document).on('input change', '#CS_opacity', function() {
-        tabContainer[0].style.opacity = this.value / 100;
+      currentOpacity = this.value/100
+        chatContainer[0].style.opacity = currentOpacity;
     });
   }
 
+  
+
   function rangeOnChangeAlpha(){
     $(document).on('input change', '#CS_color_opacity', function() {
-       tabContainer[0].style.backgroundColor = "rgba(0,0,0,"+this.value / 100+")";
+      currentColorOpacity = this.value/100 ;
+        chatContainer[0].style.setProperty("background-color", "rgba(" + bgTheme + "," + currentColorOpacity + ")", "important");
     });
   }
 
@@ -211,6 +269,20 @@ $( document ).ready(function() {
     });
   }
 
+  function setDarkTheme(){
+      if ($('input#CS_dark_theme').is(':checked')) {
+        body.classList.add('TFCO_darkTheme');
+        darkTheme = true;
+        bgTheme = '0,0,0';
+        // chatContainer[0].style.backgroundColor = "rgba(" + bgTheme + "," + currentColorOpacity + ") !important";
+        chatContainer[0].style.setProperty("background-color", "rgba(" + bgTheme + "," + currentColorOpacity + ")", "important");
+      } else{
+        body.classList.remove('TFCO_darkTheme');
+        darkTheme = false;
+        bgTheme = '239,238,241';
+        chatContainer[0].style.setProperty("background-color", "rgba(" + bgTheme + "," + currentColorOpacity + ")", "important");
+      }
+  }
 
   function toggleSettingsClass(){
       body.classList.toggle('TFCO_settingsOpen');
@@ -269,7 +341,12 @@ $( document ).ready(function() {
       rangeOnChangeAlpha();
       hideStickyCheers();
       slimMode();
+      setDarkTheme();
       loadChanges();
+
+      $("input#CS_dark_theme").change(function() {
+        setDarkTheme();
+      });
   }
 
   function onExitFullscreen(){
@@ -277,12 +354,12 @@ $( document ).ready(function() {
       body.classList.remove('TFCO_settingsOpen');
       if (body.classList.contains('TFCO_fullScreenMode')){
         savedStyle = chatBox[0].style.cssText;
-        tabSavedStyle = tabContainer[0].style.cssText;
+        tabSavedStyle = chatContainer[0].style.cssText;
       }
       saveChanges();
       body.classList.remove('TFCO_fullScreenMode');
       chatBox.removeAttr("style");
-      tabContainer.removeAttr("style");
+      chatContainer.removeAttr("style");
       chatBox.draggable({
         disabled: true
       });
@@ -298,6 +375,7 @@ $( document ).ready(function() {
   //timeout for mac
   
   function changeHandler(){
+    handleZoom();
     clearTimeout(exitFullscreenHandlerTimeout);
     exitFullscreenHandlerTimeout = setTimeout(function(){
         //ENTER FULLSCREEN
