@@ -1,6 +1,6 @@
 $( document ).ready(function() {
 
-  var chatBox, chatHeader, savedStyle, browserZoomLevel, tabSavedStyle, chatOpacity, chatAlpha, chatPositionAndSize, videoFSBtn, chatCloseButton, playerColumn, playerButtonsRight, tabContainer, fsToolBar, fsButton, windowWidth, slimModeE, hideStickyCheersE, chatContainer, bgTheme;
+  var chatBox, chatHeader, savedStyle, tabSavedStyle, chatOpacity, chatAlpha, chatPositionAndSize, videoFSBtn, chatCloseButton, playerColumn, playerButtonsRight, tabContainer, fsToolBar, fsButton, windowWidth, slimModeE, hideStickyCheersE, chatContainer, bgTheme;
   var body = document.body;
   var minimize = false;
   var settings = false;
@@ -60,7 +60,6 @@ $( document ).ready(function() {
            minimize = false;
            settings = false;
            declareEssentialsOnTime();
-           clearInterval(checkReady);
        }
     },2000);
 
@@ -78,10 +77,8 @@ $( document ).ready(function() {
   }
 
   function handleZoom (){
-      browserZoomLevel = Math.round(window.devicePixelRatio * 100);
-      console.log('zoomLvl: ', browserZoomLevel );
-
-      if(browserZoomLevel != 100){
+      var browserZoomLevel = Math.round(window.devicePixelRatio * 100);
+      if(browserZoomLevel != 100 && browserZoomLevel != 150){
         fsPlayerBtn.classList.add('disabled');
         setTimeout(function(){
           fsPlayerBtn.classList.remove('disabled');
@@ -112,8 +109,6 @@ $( document ).ready(function() {
     //wait for the tab-container to load
     var findChatContainer = setInterval(function() {
        if ($('.chat-container').length) {
-                console.log('$$$: ')
-
           chatContainer = $('.chat-container');
           clearInterval(findChatContainer);
        }
@@ -122,7 +117,6 @@ $( document ).ready(function() {
     //wait for the player-buttons to load
     var findPlayerButtons = setInterval(function() {
        if ($('.player-buttons-right').length) {
-        console.log('%%%%: ', $('.player-buttons-right').length)
           clearInterval(findPlayerButtons);
           playerButtonsRight = $('.player-buttons-right');
           playerButtonsRight[0].appendChild(fsPlayerBtn);
