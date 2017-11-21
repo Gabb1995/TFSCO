@@ -22,7 +22,7 @@ $twitchColor: #623ca5;
 .CS_box{display:none}
 // END PLAYER BUTTON
 body:not(.TFP_isFullscreen) {
-	.chat__pane{
+	.chat__pane, .video-chat{
 		left:initial !important;
 		top:initial !important;
 	}
@@ -34,7 +34,7 @@ body.TFP_isFullscreen{
 	.right-column--theatre{
 		z-index:9999999999999999;
 	}
-	.chat__pane{
+	.chat__pane, .video-chat{
 		position:fixed !important;
 		left:0;
 		top:0;
@@ -44,7 +44,8 @@ body.TFP_isFullscreen{
         min-height:300px;
 		z-index:9999999999999999;
 		width:250px;
-		height:400px;
+        height:400px;
+        overflow: hidden;
 	}
 }
 //END BASIC CHAT
@@ -52,10 +53,10 @@ body.TFP_isFullscreen{
 
 //START DEFAULT STYLING
 body.TFP_isFullscreen{
-	.chat__pane{
+	.chat__pane, .video-chat{
         border:none;
 	}
-	.chat__header{
+	.chat__header, .video-chat__header{
         background:transparent;
         box-shadow: inset 0 -1px 0 0 rgba(#dad8de,0.3);
         cursor: move
@@ -68,11 +69,13 @@ body.TFP_isFullscreen{
     // .tw-button-icon--secondary{
     //     margin-top:-170%;
     // }
+    .border-l{border:none !important}
+
 	&.TFP_darkTheme{
-        .chat__pane{
-            color: #dad8de;
+        .chat__pane, .video-chat{
+            color: #dad8de !important;
         }
-        .chat__header{
+        .chat__header .video-chat__header{
             box-shadow: inset 0 -1px 0 0 rgba(#2c2541, 0.3);
         }
         .tw-textarea{
@@ -252,11 +255,14 @@ body.TFP_isFullscreen{
 //START SLIM MODE
 body.TFP_isFullscreen{
     &.TFP_slimMode{
-        .chat__pane{
-            .chat__header{
+        .chat__pane, .video-chat{
+            .chat__header, .video-chat__header{
                 height:3rem;
                 margin-top:-3rem;
                 transition: all .2s;
+            }
+            .video-chat__header{
+                flex: 0 0 3rem;
             }
             .TFP_chatButton{
                 top:-3rem;
@@ -266,13 +272,20 @@ body.TFP_isFullscreen{
                 top:0rem;
             }
             .pd-b-2.pd-x-2{
-                padding-left: 0rem!important;
-                padding-right: 0rem!important;
-                padding-bottom: 0rem!important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+                padding-bottom: 0 !important;
                 .chat-input{
                     margin-bottom:-5rem;
                     transition: all .2s;
                 }
+            }
+            .video-chat__sync-button{
+                left:0;
+            }
+            .video-chat__input{
+                box-shadow:none !important;
+                padding-top: 0 !important;
             }
             .tw-textarea{
                 height:3.2rem;
@@ -284,7 +297,7 @@ body.TFP_isFullscreen{
                 padding-top:0;
             }
             &:hover{
-                .chat__header{
+                .chat__header, .video-chat__header{
                     margin-top:0rem;
                 }
                 .TFP_chatButton{
