@@ -6,6 +6,7 @@ var settings = {
     bgTheme: '218,216,222',
     currentAlpha: '1',
     currentOpacity: '1',
+    twitchDark: false
 }
 
 var mainChatPanel = '.chat__pane'
@@ -98,7 +99,7 @@ function createPlayerBtn(){
 	fsPlayerBtn.classList.add('TFP-PlayerBtn', 'player-button');
 	fsPlayerBtn.addEventListener('click', clickFullscreen);
 	//append playerBtn to button list
-	checkDomEl('.player-buttons-right', appendPlayerBtn, 300);
+	checkDomEl('.player-buttons-right', appendPlayerBtn, 100);
 }
 
 //append the button to the button List
@@ -117,7 +118,7 @@ function changedFullscreen(){
 	 	var fullscreenHandlerTimeout = setTimeout(function(){
 			//if we exit fullscreen restore default chat
 			if(!(window.innerHeight === screen.height)) {
-				checkDomEl(mainChatPanel, onExitFullscreen, 300);
+                checkDomEl(mainChatPanel, onExitFullscreen, 0);
 			} 
     },300);
 }
@@ -130,9 +131,9 @@ function clickFullscreen(){
     //if we enter fullscreen add the chat
     var fullscreenHandlerTimeout = setTimeout(function(){
         if(window.innerHeight === screen.height) {
-            checkDomEl(mainChatPanel, addChat, 300);
+            checkDomEl(mainChatPanel, addChat, 0);
         }
-    },300);
+    },100);
 }
 
 function onExitFullscreen(element){
@@ -150,6 +151,13 @@ function onExitFullscreen(element){
     });
     document.body.classList.remove('TFP_settingsOpen', 'TFP_isFullscreen', 'TFP_darkTheme', 'TFP_slimMode', 'TFP_hideSticky');
     chatContainer.removeAttr("style");
+    
+    if(document.body.classList.contains('theme--dark')){
+        var rightCol = document.querySelector('.right-column');
+        rightCol.setAttribute('class', '');
+        rightCol.setAttribute('class', 'right-column right-column--theatre top-0 right-0 full-height flex-shrink-0 fixed')
+    }
+    
 }
 
 //move chat to overlay
@@ -169,19 +177,22 @@ function addChat(element){
         });
         loadChanges(element);
         setChatProperties(element);
-		addChatSettings(element);
-	},300);
+        addChatSettings(element);
+        if(document.body.classList.contains('theme--dark')){
+            var rightCol = document.querySelector('.right-column');
+            rightCol.setAttribute('class', '');
+            rightCol.setAttribute('class', 'right-column full-height flex-shrink-0 relative')
+        }
+	},100);
 }
 
 function setChatProperties(element){
-
-    
     setTimeout(function(){
         element.style.top = settings.chatPosition.top;
         element.style.left = settings.chatPosition.left;
         element.style.width = settings.chatSize.width;
         element.style.height = settings.chatSize.height;
-    },300);
+    },0);
 }
 
 //START SETTINGS
@@ -199,13 +210,13 @@ function initSettings(element){
             element.appendChild(value)
         });
     }
-    
+    var chatPane = document.querySelector(mainChatPanel);
     // //add input handlers
-    checkDomEl(mainChatPanel, rangeOnChangeOpacity, 300);
-    checkDomEl(mainChatPanel, rangeOnChangeAlpha, 300);
-    checkDomEl(mainChatPanel, onChangeDarkTheme, 300);
-    checkDomEl(mainChatPanel, onChangeSlimMode, 300);
-    checkDomEl(mainChatPanel, onChangeHideSticky, 300);
+    rangeOnChangeOpacity(chatPane);
+    rangeOnChangeAlpha(chatPane);
+    onChangeDarkTheme(chatPane);
+    onChangeSlimMode(chatPane);
+    onChangeHideSticky(chatPane);
 }
 
 function toggleSettingsClass(){
@@ -230,7 +241,7 @@ function addChatSettings(element){
         settings.ready = true;
     }
 
-    checkDomEl('.CS_box_content', initSettings, 300);
+    checkDomEl('.CS_box_content', initSettings, 0);
 }
 
 function rangeOnChangeOpacity(element){
