@@ -4,7 +4,7 @@
   "name": "Twitch Fullscreen Plus",
   "short_name": "TFP",
   "description": "Triggers fullscreen view of twitch stream with chat overlay",
-  "version": "2.2.0",
+  "version": "2.3.0",
 
    "icons": {
     "48": "icon.png"
