@@ -8,7 +8,7 @@ var settings = {
     currentOpacity: '1',
     twitchDark: false
 }
-var mainChatPanel = '.chat-room__pane';
+var mainChatPanel = '.chat-room__container';
 var mainHeader = '.chat-room__header';
 var rightCol;
 //generate setting items with the params given
@@ -38,13 +38,12 @@ function checkDomEl(el, action, time){
 				if (element){
                     // domList[el] = element;
 					clearInterval(interval);
-					action(element);
+                    action(element);
 				} else {
                     console.log('element', el, 'does not exist');
                 }
 		}, time);
     } else {
-        console.log('checkDomEl out')
 		action(domList[el]);
 	}
 }
@@ -119,7 +118,6 @@ if (document.addEventListener){
 
 //if fullscreen event changed
 function changedFullscreen(){
-    console.log(rightCol);
     
     var fullscreenHandlerTimeout = setTimeout(function(){
         //if we exit fullscreen restore default chat
@@ -143,9 +141,8 @@ function clickFullscreen(){
                 }
         } else if(!(window.innerHeight === screen.height)) {
             videoFSBtn.click();
-            if(document.body.classList.contains('tw-theme--dark')){
-                rightCol = document.querySelector('.right-column');
-            }
+            rightCol = document.querySelector('.right-column');
+            rightColClasses = rightCol.getAttribute("class");
             setTimeout(function(){
                 checkDomEl(mainChatPanel, addChat, 0);  
             },300);
@@ -170,7 +167,7 @@ function onExitFullscreen(element){
     chatContainer.removeAttr("style");
     
     if(document.body.classList.contains('tw-theme--dark')){
-        rightCol.setAttribute('class', 'right-column right-column--theatre tw-top-0 tw-right-0 tw-full-height tw-flex-shrink-0 tw-fixed')
+        rightCol.setAttribute('class',  rightColClasses)
     }
     
 }
@@ -348,7 +345,7 @@ function switchToVOD(){
         mainChatPanel = '.video-chat';
         mainHeader = '.video-chat__header';
     } else {
-        mainChatPanel = '.chat-room__pane';
+        mainChatPanel = '.chat-room__container';
         mainHeader = '.chat-room__header';
     }
 }
