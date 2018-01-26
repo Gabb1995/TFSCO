@@ -176,7 +176,7 @@ function onExitFullscreen(element){
 function addChat(element){
 	// setTimeout(function(){
         document.body.classList.add('TFP_isFullscreen');
-        element.classList.remove('tw-full-height', 'tw-full-width');
+        element.classList.remove('tw-full-height', 'tw-full-width', 'tw-c-background-alt-2');
 		var chatContainer = $(element);
 		chatContainer.draggable({ 
 			disabled:false,

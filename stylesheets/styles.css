@@ -119,62 +119,64 @@ body.TFP_isFullscreen .chat-room__container, body.TFP_isFullscreen .video-chat {
 /* line 56, ../sass/styles.scss */
 body.TFP_isFullscreen .chat-room__container, body.TFP_isFullscreen .video-chat {
   border: none;
+  color: #19171c !important;
 }
-/* line 59, ../sass/styles.scss */
+/* line 60, ../sass/styles.scss */
 body.TFP_isFullscreen .chat-room__header, body.TFP_isFullscreen .video-chat__header {
   background: transparent;
   box-shadow: inset 0 -1px 0 0 rgba(218, 216, 222, 0.3);
   cursor: move;
 }
-/* line 64, ../sass/styles.scss */
+/* line 65, ../sass/styles.scss */
 body.TFP_isFullscreen .tw-textarea {
   background: transparent;
   border: 1px solid rgba(218, 216, 222, 0.3);
   box-shadow: none;
 }
-/* line 73, ../sass/styles.scss */
+/* line 74, ../sass/styles.scss */
 body.TFP_isFullscreen .tw-border-l, body.TFP_isFullscreen .tw-border-b, body.TFP_isFullscreen .tw-border-r, body.TFP_isFullscreen .tw-border-t {
   border: none !important;
 }
-/* line 74, ../sass/styles.scss */
-body.TFP_isFullscreen .tw-c-background-alt-2 {
+/* line 75, ../sass/styles.scss */
+body.TFP_isFullscreen .chat-room__container .tw-c-background-alt-2 {
   background: transparent !important;
+  color: #19171c !important;
 }
-/* line 77, ../sass/styles.scss */
+/* line 78, ../sass/styles.scss */
 body.TFP_isFullscreen.TFP_darkTheme .chat-room__container, body.TFP_isFullscreen.TFP_darkTheme .video-chat {
   color: #dad8de !important;
 }
-/* line 80, ../sass/styles.scss */
+/* line 81, ../sass/styles.scss */
 body.TFP_isFullscreen.TFP_darkTheme .chat-room__header .video-chat__header {
   box-shadow: inset 0 -1px 0 0 rgba(44, 37, 65, 0.3);
 }
-/* line 83, ../sass/styles.scss */
+/* line 84, ../sass/styles.scss */
 body.TFP_isFullscreen.TFP_darkTheme .tw-textarea {
   border: 1px solid rgba(57, 46, 92, 0.3);
   color: #dad8de;
 }
-/* line 87, ../sass/styles.scss */
+/* line 88, ../sass/styles.scss */
 body.TFP_isFullscreen.TFP_darkTheme .tw-c-text {
   color: #dad8de !important;
 }
-/* line 90, ../sass/styles.scss */
+/* line 91, ../sass/styles.scss */
 body.TFP_isFullscreen.TFP_darkTheme .video-chat__sync-button {
   background: black;
   color: #dad8de;
 }
 
-/* line 101, ../sass/styles.scss */
+/* line 102, ../sass/styles.scss */
 body.TFP_isFullscreen.TFP_settingsOpen .CS_box {
   pointer-events: auto;
 }
-/* line 104, ../sass/styles.scss */
+/* line 105, ../sass/styles.scss */
 body.TFP_isFullscreen.TFP_settingsOpen .CS_box_content {
   -moz-transform: translateX(0%);
   -ms-transform: translateX(0%);
   -webkit-transform: translateX(0%);
   transform: translateX(0%);
 }
-/* line 108, ../sass/styles.scss */
+/* line 109, ../sass/styles.scss */
 body.TFP_isFullscreen .TFP_chatButton {
   width: 17px;
   height: 17px;
@@ -190,15 +192,15 @@ body.TFP_isFullscreen .TFP_chatButton {
   transition: background 0.2s, opacity 0.2s;
   opacity: 0.5;
 }
-/* line 119, ../sass/styles.scss */
+/* line 120, ../sass/styles.scss */
 body.TFP_isFullscreen .TFP_chatButton:hover {
   background: #ffd166;
 }
-/* line 122, ../sass/styles.scss */
+/* line 123, ../sass/styles.scss */
 body.TFP_isFullscreen .TFP_chatButton.TFP_chatMinimize {
   right: 10px;
 }
-/* line 126, ../sass/styles.scss */
+/* line 127, ../sass/styles.scss */
 body.TFP_isFullscreen .TFP_chatButton.TFP_chatSettings {
   right: 30px;
   background-position: center;
@@ -206,7 +208,7 @@ body.TFP_isFullscreen .TFP_chatButton.TFP_chatSettings {
   background-size: 70%;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAQAAAC1QeVaAAAAs0lEQVQY02P4z4AbInMs/4OAArqkzP9H/w3/p4Mlff77/r/6nx0heQUo+A8I/8Pp7QjJ6P/owAUiKfRf7H8mWGATUIDj/1EwO+g/P0hyDlTtr/88YFMUoPx3IMm5UM53iCP+S0P570GSEv+V/5eBuQvBklvB7Lz/2jAHeUFVfwPqhwBThGsvYLj2AEJSCajD538RWDjuf+L/T/9FkYOPEYitwZKaUB5a2Mr93/B/KdDfcBEAwFsWhnIu/UEAAAAASUVORK5CYII=);
 }
-/* line 134, ../sass/styles.scss */
+/* line 135, ../sass/styles.scss */
 body.TFP_isFullscreen .CS_box {
   z-index: 20;
   position: absolute;
@@ -223,7 +225,7 @@ body.TFP_isFullscreen .CS_box {
   -webkit-transition: top 0.2s;
   transition: top 0.2s;
 }
-/* line 146, ../sass/styles.scss */
+/* line 147, ../sass/styles.scss */
 body.TFP_isFullscreen .CS_box .CS_box_content {
   width: 100%;
   padding: 20px;
@@ -237,7 +239,7 @@ body.TFP_isFullscreen .CS_box .CS_box_content {
   -webkit-transform: translateY(-100%);
   transform: translateY(-100%);
 }
-/* line 152, ../sass/styles.scss */
+/* line 153, ../sass/styles.scss */
 body.TFP_isFullscreen .CS_box .CS_box_content .input_pair {
   display: -webkit-flex;
   display: flex;
@@ -247,20 +249,20 @@ body.TFP_isFullscreen .CS_box .CS_box_content .input_pair {
   margin-top: 8px;
   border-top: 1px solid rgba(0, 0, 0, 0.2);
 }
-/* line 158, ../sass/styles.scss */
+/* line 159, ../sass/styles.scss */
 body.TFP_isFullscreen .CS_box .CS_box_content .input_pair:first-of-type {
   border-top: none;
   margin-top: 0;
   padding-top: 0;
 }
-/* line 165, ../sass/styles.scss */
+/* line 166, ../sass/styles.scss */
 body.TFP_isFullscreen .CS_box .input_label {
   white-space: nowrap;
   color: #fff;
   margin-bottom: 0;
   text-transform: capitalize;
 }
-/* line 172, ../sass/styles.scss */
+/* line 173, ../sass/styles.scss */
 body.TFP_isFullscreen .CS_box .checkbox_container {
   width: 80px;
   height: 26px;
@@ -269,7 +271,7 @@ body.TFP_isFullscreen .CS_box .checkbox_container {
   border-radius: 50px;
   box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 0.2);
 }
-/* line 179, ../sass/styles.scss */
+/* line 180, ../sass/styles.scss */
 body.TFP_isFullscreen .CS_box .checkbox_container:after {
   content: 'OFF';
   color: #000;
@@ -280,7 +282,7 @@ body.TFP_isFullscreen .CS_box .checkbox_container:after {
   font-weight: bold;
   text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.15);
 }
-/* line 189, ../sass/styles.scss */
+/* line 190, ../sass/styles.scss */
 body.TFP_isFullscreen .CS_box .checkbox_container:before {
   content: 'ON';
   color: #ffb300;
@@ -290,7 +292,7 @@ body.TFP_isFullscreen .CS_box .checkbox_container:before {
   font: 12px/26px Arial, sans-serif;
   font-weight: bold;
 }
-/* line 198, ../sass/styles.scss */
+/* line 199, ../sass/styles.scss */
 body.TFP_isFullscreen .CS_box .checkbox_container label {
   display: block;
   width: 34px;
@@ -306,26 +308,26 @@ body.TFP_isFullscreen .CS_box .checkbox_container label {
   transition: all 0.4s ease;
   box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
 }
-/* line 213, ../sass/styles.scss */
+/* line 214, ../sass/styles.scss */
 body.TFP_isFullscreen .CS_box .checkbox_container input[type=checkbox] {
   visibility: hidden;
 }
-/* line 215, ../sass/styles.scss */
+/* line 216, ../sass/styles.scss */
 body.TFP_isFullscreen .CS_box .checkbox_container input[type=checkbox]:checked + label {
   left: 43px;
 }
-/* line 222, ../sass/styles.scss */
+/* line 223, ../sass/styles.scss */
 body.TFP_isFullscreen .CS_box input[type=range] {
   -webkit-appearance: none;
   width: 40%;
   margin: 1.2px 0;
   background: transparent;
 }
-/* line 228, ../sass/styles.scss */
+/* line 229, ../sass/styles.scss */
 body.TFP_isFullscreen .CS_box input[type=range]:focus {
   outline: none;
 }
-/* line 231, ../sass/styles.scss */
+/* line 232, ../sass/styles.scss */
 body.TFP_isFullscreen .CS_box input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
   height: 1px;
@@ -333,7 +335,7 @@ body.TFP_isFullscreen .CS_box input[type=range]::-webkit-slider-runnable-track {
   background: rgba(243, 240, 242, 0.35);
   border-radius: 20px;
 }
-/* line 239, ../sass/styles.scss */
+/* line 240, ../sass/styles.scss */
 body.TFP_isFullscreen .CS_box input[type=range]::-webkit-slider-thumb {
   height: 10px;
   width: 10px;
@@ -343,15 +345,15 @@ body.TFP_isFullscreen .CS_box input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
   margin-top: -3.2px;
 }
-/* line 248, ../sass/styles.scss */
+/* line 249, ../sass/styles.scss */
 body.TFP_isFullscreen .CS_box input[type=range]:focus::-webkit-slider-runnable-track {
   background: rgba(254, 254, 254, 0.55);
 }
-/* line 254, ../sass/styles.scss */
+/* line 255, ../sass/styles.scss */
 body.TFP_isFullscreen.TFP_settingsOpen .CS_box {
   pointer-events: auto;
 }
-/* line 257, ../sass/styles.scss */
+/* line 258, ../sass/styles.scss */
 body.TFP_isFullscreen.TFP_settingsOpen .CS_box_content {
   -moz-transform: translateX(0%);
   -ms-transform: translateX(0%);
@@ -359,28 +361,28 @@ body.TFP_isFullscreen.TFP_settingsOpen .CS_box_content {
   transform: translateX(0%);
 }
 
-/* line 268, ../sass/styles.scss */
+/* line 269, ../sass/styles.scss */
 body.TFP_isFullscreen.TFP_slimMode .chat-room__container .chat-room__header, body.TFP_isFullscreen.TFP_slimMode .chat-room__container .video-chat__header, body.TFP_isFullscreen.TFP_slimMode .video-chat .chat-room__header, body.TFP_isFullscreen.TFP_slimMode .video-chat .video-chat__header {
   height: 3rem;
   margin-top: -3rem;
   transition: all .2s .5s;
 }
-/* line 273, ../sass/styles.scss */
+/* line 274, ../sass/styles.scss */
 body.TFP_isFullscreen.TFP_slimMode .chat-room__container .video-chat__header, body.TFP_isFullscreen.TFP_slimMode .video-chat .video-chat__header {
   flex: 0 0 3rem;
   transition: all .2s .5s;
 }
-/* line 277, ../sass/styles.scss */
+/* line 278, ../sass/styles.scss */
 body.TFP_isFullscreen.TFP_slimMode .chat-room__container .TFP_chatButton, body.TFP_isFullscreen.TFP_slimMode .video-chat .TFP_chatButton {
   top: -3rem;
   transition: all .2s .5s;
 }
-/* line 281, ../sass/styles.scss */
+/* line 282, ../sass/styles.scss */
 body.TFP_isFullscreen.TFP_slimMode .chat-room__container .CS_box, body.TFP_isFullscreen.TFP_slimMode .video-chat .CS_box {
   top: 0rem;
   transition: all .2s .5s;
 }
-/* line 285, ../sass/styles.scss */
+/* line 286, ../sass/styles.scss */
 body.TFP_isFullscreen.TFP_slimMode .chat-room__container .chat-input, body.TFP_isFullscreen.TFP_slimMode .chat-room__container .video-chat__input, body.TFP_isFullscreen.TFP_slimMode .video-chat .chat-input, body.TFP_isFullscreen.TFP_slimMode .video-chat .video-chat__input {
   padding-left: 0 !important;
   padding-right: 0 !important;
@@ -388,54 +390,54 @@ body.TFP_isFullscreen.TFP_slimMode .chat-room__container .chat-input, body.TFP_i
   transition: all .2s .5s;
   margin-bottom: -75px;
 }
-/* line 292, ../sass/styles.scss */
+/* line 293, ../sass/styles.scss */
 body.TFP_isFullscreen.TFP_slimMode .chat-room__container .video-chat__sync-button, body.TFP_isFullscreen.TFP_slimMode .video-chat .video-chat__sync-button {
   left: 0;
   width: 100%;
 }
-/* line 296, ../sass/styles.scss */
+/* line 297, ../sass/styles.scss */
 body.TFP_isFullscreen.TFP_slimMode .chat-room__container .video-chat__input, body.TFP_isFullscreen.TFP_slimMode .video-chat .video-chat__input {
   box-shadow: none !important;
   padding-top: 0 !important;
 }
-/* line 300, ../sass/styles.scss */
+/* line 301, ../sass/styles.scss */
 body.TFP_isFullscreen.TFP_slimMode .chat-room__container .tw-textarea, body.TFP_isFullscreen.TFP_slimMode .video-chat .tw-textarea {
   height: 3.2rem;
   border-left-width: 0;
   border-right-width: 0;
 }
-/* line 305, ../sass/styles.scss */
+/* line 306, ../sass/styles.scss */
 body.TFP_isFullscreen.TFP_slimMode .chat-room__container .chat-buttons-container, body.TFP_isFullscreen.TFP_slimMode .video-chat .chat-buttons-container {
   padding: 1rem;
   padding-top: 0;
 }
-/* line 310, ../sass/styles.scss */
+/* line 311, ../sass/styles.scss */
 body.TFP_isFullscreen.TFP_slimMode .chat-room__container:hover .chat-room__header, body.TFP_isFullscreen.TFP_slimMode .chat-room__container:hover .video-chat__header, body.TFP_isFullscreen.TFP_slimMode .video-chat:hover .chat-room__header, body.TFP_isFullscreen.TFP_slimMode .video-chat:hover .video-chat__header {
   margin-top: 0rem;
   transition: all .2s 0s;
 }
-/* line 314, ../sass/styles.scss */
+/* line 315, ../sass/styles.scss */
 body.TFP_isFullscreen.TFP_slimMode .chat-room__container:hover .TFP_chatButton, body.TFP_isFullscreen.TFP_slimMode .video-chat:hover .TFP_chatButton {
   top: 6px;
   transition: all .2s 0s;
 }
-/* line 318, ../sass/styles.scss */
+/* line 319, ../sass/styles.scss */
 body.TFP_isFullscreen.TFP_slimMode .chat-room__container:hover .CS_box, body.TFP_isFullscreen.TFP_slimMode .video-chat:hover .CS_box {
   top: 3rem;
   transition: all .2s 0s;
 }
-/* line 322, ../sass/styles.scss */
+/* line 323, ../sass/styles.scss */
 body.TFP_isFullscreen.TFP_slimMode .chat-room__container:hover .chat-input, body.TFP_isFullscreen.TFP_slimMode .chat-room__container:hover .video-chat__input, body.TFP_isFullscreen.TFP_slimMode .video-chat:hover .chat-input, body.TFP_isFullscreen.TFP_slimMode .video-chat:hover .video-chat__input {
   margin-bottom: 0rem;
   transition: all .2s 0s;
 }
 
-/* line 336, ../sass/styles.scss */
+/* line 337, ../sass/styles.scss */
 body.TFP_isFullscreen.TFP_hideSticky .pinned-cheer {
   display: none;
 }
 
-/* line 342, ../sass/styles.scss */
+/* line 343, ../sass/styles.scss */
 .ui-resizable-handle {
   width: 15px;
   height: 15px;
@@ -443,7 +445,7 @@ body.TFP_isFullscreen.TFP_hideSticky .pinned-cheer {
   cursor: nwse-resize;
 }
 
-/* line 349, ../sass/styles.scss */
+/* line 350, ../sass/styles.scss */
 .ui-resizable-handle.ui-icon-gripsmall-diagonal-se {
   bottom: 0;
   right: 0;
@@ -453,12 +455,12 @@ body.TFP_isFullscreen.TFP_hideSticky .pinned-cheer {
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAMAAADXqc3KAAAAElBMVEUAAAAAAAD///9ycnKmpqbDw8NP6HFHAAAABnRSTlMAZmaMqL1duDaXAAAANElEQVR4AWOgLWBkwSXOhEucaQDFmVlwiDMz4RJnGhhxKIVLnAlVnIUZQUEAK4TFjKCoCwAVoAEkUgxjHAAAAABJRU5ErkJggg==);
 }
 
-/* line 359, ../sass/styles.scss */
+/* line 360, ../sass/styles.scss */
 .ui-resizable-handle.ui-resizable-e {
   display: none;
 }
 
-/* line 363, ../sass/styles.scss */
+/* line 364, ../sass/styles.scss */
 .ui-resizable-handle.ui-resizable-s {
   display: none;
 }

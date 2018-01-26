@@ -55,6 +55,7 @@ body.TFP_isFullscreen{
 body.TFP_isFullscreen{
 	.chat-room__container, .video-chat{
         border:none;
+        color: #19171c !important;
 	}
 	.chat-room__header, .video-chat__header{
         background:transparent;
@@ -71,7 +72,7 @@ body.TFP_isFullscreen{
     // }
     
     .tw-border-l, .tw-border-b, .tw-border-r, .tw-border-t{border:none !important}
-    .tw-c-background-alt-2 {background: transparent !important}
+    .chat-room__container .tw-c-background-alt-2 {background: transparent !important; color: #19171c !important}
 
 	&.TFP_darkTheme{
         .chat-room__container, .video-chat{
