@@ -8,8 +8,8 @@ var settings = {
     currentOpacity: '1',
     twitchDark: false
 }
-var mainChatPanel = '.chat-room__container';
-var mainHeader = '.chat-room__header';
+var mainChatPanel = '.right-column';
+var mainHeader = '.room-selector__header';
 var rightCol;
 //generate setting items with the params given
 function createSettingsItem(type, label, val1, val2){
@@ -31,6 +31,9 @@ function createSettingsItem(type, label, val1, val2){
 }
 //check if dom element exists and run a function returning the element searched
 function checkDomEl(el, action, time){
+    var maxRetries  = 15;
+    var retries     = 0;
+
 	if (!(el in domList) || !settings.ready){
         
 		var interval = setInterval(function() {
@@ -40,7 +43,13 @@ function checkDomEl(el, action, time){
 					clearInterval(interval);
                     action(element);
 				} else {
+                    retries += 1;
                     console.log('element', el, 'does not exist');
+                    if(retries >= maxRetries){
+                        clearInterval(interval);
+                        console.log('Somthing is wrong');
+                    }
+                    
                 }
 		}, time);
     } else {
@@ -65,9 +74,9 @@ function saveChanges() {
     // Save it using the Chrome extension storage API.
     chrome.storage.sync.set({'savedSettings': savedSettings}, function() {
     });
-  }
+}
 
-  function loadChanges(element) {
+function loadChanges(element) {
     var chatContainer = element;
     
     // Load it using the Chrome extension storage API.
@@ -94,9 +103,9 @@ function saveChanges() {
          items.savedSettings.chatPosition = {top: '', left: ''}
      }
    });
- }
+}
 
-// create the fullscreen Btn
+ // create the fullscreen Btn
 function createPlayerBtn(){
 	fsPlayerBtn = document.createElement('button');
 	fsPlayerBtn.classList.add('TFP-PlayerBtn', 'player-button');
@@ -108,7 +117,7 @@ function createPlayerBtn(){
 //append the button to the button List
 function appendPlayerBtn(element){
 	element.append(fsPlayerBtn);
-};
+}
 
 //check when fullscreen change
 if (document.addEventListener){
@@ -130,22 +139,23 @@ function changedFullscreen(){
 //click on the twitch fullscreen button
 function clickFullscreen(){
     var videoFSBtn = document.querySelector('.qa-fullscreen-button');
-    
-    
+    var rightBar = document.querySelectorAll('[data-a-target="right-column-chat-bar"]');
+
     //if we enter fullscreen add the chat
-   
+        
         if(window.innerHeight === screen.height) { 
-                checkDomEl(mainChatPanel, addChat, 0); 
-                if(document.body.classList.contains('TFP_isFullscreen')){
-                    videoFSBtn.click();
-                }
+            checkDomEl(mainChatPanel, addChat, 300); 
+            if(document.body.classList.contains('TFP_isFullscreen')){
+                videoFSBtn.click();
+            }
         } else if(!(window.innerHeight === screen.height)) {
             videoFSBtn.click();
-            rightCol = document.querySelector('.right-column');
-            rightColClasses = rightCol.getAttribute("class");
             setTimeout(function(){
-                checkDomEl(mainChatPanel, addChat, 0);  
-            },300);
+                rightBar[0].classList.add('right-column');
+                rightCol = document.querySelector('.right-column');
+                rightColClasses = rightCol.getAttribute("class");
+                checkDomEl(mainChatPanel, addChat, 300);  
+            },1000);
         }
   
 }
@@ -170,10 +180,17 @@ function onExitFullscreen(element){
         rightCol.setAttribute('class',  rightColClasses)
     }
     
+    var main = document.querySelector('main');
+    main.parentNode.insertBefore(rightCol, main.nextSibling);
 }
 
 //move chat to overlay
 function addChat(element){
+
+        
+    var playerVideo = document.querySelector('.player-video');
+    playerVideo.parentNode.insertBefore(rightCol, playerVideo.nextSibling);
+
 	// setTimeout(function(){
         document.body.classList.add('TFP_isFullscreen');
         element.classList.remove('tw-full-height', 'tw-full-width', 'tw-c-background-alt-2');
@@ -188,6 +205,7 @@ function addChat(element){
             disabled:false,
             containment: "document"
         });
+
         loadChanges(element);
         setChatProperties(element);
         addChatSettings(element);
@@ -319,6 +337,7 @@ function setDarkTheme(element){
         element.style.backgroundColor = "rgba(" + settings.bgTheme + "," + settings.currentAlpha + ")", "important";
     }
 }
+
 function setSlimMode(){
     if ($('input#CS_slimMode').is(':checked')) {
         settings.slimMode = true;
@@ -345,8 +364,8 @@ function switchToVOD(){
         mainChatPanel = '.video-chat';
         mainHeader = '.video-chat__header';
     } else {
-        mainChatPanel = '.chat-room__container';
-        mainHeader = '.chat-room__header';
+        mainChatPanel = '.right-column';
+        mainHeader = '.room-selector__header';
     }
 }
 //END SETTINGS
@@ -369,5 +388,4 @@ $(document).ready(function() {
             }
         }
     }, 500);
-  
 });

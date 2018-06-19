@@ -22,9 +22,10 @@ $twitchColor: #623ca5;
 .CS_box{display:none}
 // END PLAYER BUTTON
 body:not(.TFP_isFullscreen) {
-	.chat-room__container, .video-chat{
+	.right-column, .video-chat{
 		left:initial !important;
 		top:initial !important;
+		font-size: 12px;
 	}
 }
 
@@ -34,7 +35,7 @@ body.TFP_isFullscreen{
 	.right-column--theatre{
 		z-index:9999999999999999;
 	}
-	.chat-room__container, .video-chat{
+	.right-column, .video-chat{
 		position:fixed !important;
 		left:0;
 		top:0;
@@ -47,6 +48,9 @@ body.TFP_isFullscreen{
         height:400px;
         overflow: hidden;
 	}
+	.channel-page__right-column{
+		width:100%;
+	}
 }
 //END BASIC CHAT
 
@@ -57,7 +61,7 @@ body.TFP_isFullscreen{
         border:none;
         color: #19171c !important;
 	}
-	.chat-room__header, .video-chat__header{
+	.room-selector__header, .video-chat__header{
         background:transparent;
         box-shadow: inset 0 -1px 0 0 rgba(#dad8de,0.3);
         cursor: move
@@ -66,31 +70,46 @@ body.TFP_isFullscreen{
         background:transparent;
         border: 1px solid rgba(#dad8de,0.3);
         box-shadow:none;
-    }
+	}
+	.simplebar-scroll-content{
+		margin-right:-26px;
+		padding-left: 10px;
+		overflow-y:auto;
+	}
+	.tw-button{
+		padding: 3px 8px;
+	}
     // .tw-button-icon--secondary{
     //     margin-top:-170%;
     // }
-    
+    .chat-line__message, .chat-line__moderation, .chat-line__status{
+		padding-bottom: 8px !important;
+		padding-right: 8px !important;
+	}
+
     .tw-border-l, .tw-border-b, .tw-border-r, .tw-border-t{border:none !important}
-    .chat-room__container .tw-c-background-alt-2 {background: transparent !important; color: #19171c !important}
+    .right-column .tw-c-background-alt-2 {background: transparent !important; color: #19171c !important}
 
 	&.TFP_darkTheme{
         .chat-room__container, .video-chat{
             color: #dad8de !important;
         }
-        .chat-room__header .video-chat__header{
+        .room-selector__header .video-chat__header{
             box-shadow: inset 0 -1px 0 0 rgba(#2c2541, 0.3);
         }
         .tw-textarea{
             border: 1px solid  rgba(#392e5c, 0.3);
             color: #dad8de
         }
-        .tw-c-text{
+        .tw-c-text, .tw-c-text-alt{
             color: #dad8de !important
         }
         .video-chat__sync-button{
             background: black;
             color: #dad8de;
+        }
+        .chat-line__subscribe{
+        	background-color:rgba(black,0.9);
         }
 	}
 }
@@ -125,7 +144,7 @@ body.TFP_isFullscreen{
 		}
 	
 	    &.TFP_chatSettings{
-		    right: 30px;
+		    right: 90px;
 	    	background-position:center;
 	    	background-repeat:no-repeat;
 	    	background-size: 70%;
@@ -265,8 +284,8 @@ body.TFP_isFullscreen{
 //START SLIM MODE
 body.TFP_isFullscreen{
     &.TFP_slimMode{
-        .chat-room__container, .video-chat{
-            .chat-room__header, .video-chat__header{
+        .right-column, .video-chat{
+            .room-selector__header, .video-chat__header{
                 height:3rem;
                 margin-top:-3rem;
                 transition: all .2s .5s;
@@ -301,14 +320,15 @@ body.TFP_isFullscreen{
             .tw-textarea{
                 height:3.2rem;
                 border-left-width: 0;
-                border-right-width: 0;
+				border-right-width: 0;
+				padding: 5px;
             }
             .chat-buttons-container{
                 padding:1rem;
                 padding-top:0;
             }
             &:hover{
-                .chat-room__header, .video-chat__header{
+                .room-selector__header, .video-chat__header{
                     margin-top:0rem;
                     transition: all .2s 0s;
                 }
@@ -334,7 +354,7 @@ body.TFP_isFullscreen{
 //START HIDE STICKY
 body.TFP_isFullscreen{
     &.TFP_hideSticky{
-        .pinned-cheer{display:none}
+        .pinned-cheer, .pinned-cheer-v2 {display:none}
     }
 }
 
